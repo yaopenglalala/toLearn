@@ -1,0 +1,12 @@
+/json/ToDoList.json
+# comment
+/out/
+/.scannerwork/
+/.idea/workspace.xml
+sonar-project.properties
+/json/ToDoList.json
+/json/test.json
+
+
+# mac bin
+.DS_Store
