@@ -9,7 +9,10 @@ import java.util.List;
 public interface CourseService {
 
     //通过用户id得到开课课程列表
-    List<Course> getCourses(Integer userid);
+    List<Course> getCoursesByUserId(Integer userid);
+
+    //通过课程id得到课程
+    Course getCourseByCourseId(Integer courseId);
 
     //添加课程
     boolean addCourse(Course course);

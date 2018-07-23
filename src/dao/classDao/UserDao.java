@@ -1,7 +1,7 @@
 package dao.classDao;
 
 import dao.JDBCUtil;
-import dao.JdbcDaoImpl;
+import dao.daoInterface.JdbcDaoImpl;
 import model.User;
 
 import java.sql.Connection;

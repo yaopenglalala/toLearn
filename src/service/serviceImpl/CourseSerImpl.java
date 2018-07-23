@@ -17,8 +17,13 @@ public class CourseSerImpl implements CourseService {
     }
 
     //通过用户id得到开课课程列表
-    public List<Course> getCourses(Integer userid){
+    public List<Course> getCoursesByUserId(Integer userid){
         return courseDao.getCoursesByUserId(userid);
+    }
+
+    @Override
+    public Course getCourseByCourseId(Integer courseId) {
+        return courseDao.getCourseByCourseId(courseId);
     }
 
     //添加课程

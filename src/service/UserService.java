@@ -17,4 +17,7 @@ public interface UserService {
 
     //修改用户信息
     boolean updateUser(User user);
+
+    //搜索
+    //todo
 }

@@ -1,7 +1,7 @@
 package dao.classDao;
 
 import dao.JDBCUtil;
-import dao.JdbcDaoImpl;
+import dao.daoInterface.JdbcDaoImpl;
 import model.Course;
 
 import java.sql.Connection;
@@ -23,12 +23,14 @@ public class CourseDao extends JdbcDaoImpl<Course> {
     }
 
     public boolean removeCourse(Integer courseId){
+        if (getCourseByCourseId(courseId) == null) return false;
         String sql = "DELETE FROM course_info where course_id = ?";
         update(connection,sql,courseId);
         return true;
     }
 
     public boolean updateCourse(Course course){
+        if (getCourseByCourseId(course.getCourseId()) == null) return false;
         String sql = "UPDATE course_info SET user_id=?, course_name=? where course_id = ?";
         update(connection,sql,course.getUserId(),course.getCourseName(),course.getIntroduction(), course.getCourseId());
         return false;

@@ -9,6 +9,10 @@
 <html>
   <head>
     <title>$Title$</title>
+    <jsp:useBean id="fsad" class="java.util.HashMap">
+    <%
+
+    %>
   </head>
   <body>
   $END$

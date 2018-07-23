@@ -1,10 +1,6 @@
 package dao;
 
-import org.apache.commons.dbutils.DbUtils;
-
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;

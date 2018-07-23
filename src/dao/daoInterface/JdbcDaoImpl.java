@@ -1,4 +1,4 @@
-package dao;
+package dao.daoInterface;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -59,7 +59,7 @@ public class JdbcDaoImpl<T> implements DAO<T> {
     @Override
     public List<T> getList(Connection connection, String sql, Object... args){
         try {
-            return queryRunner.query(connection, sql, new BeanListHandler<>(type));
+            return queryRunner.query(connection, sql, new BeanListHandler<>(type), args);
         } catch (SQLException e){
             e.printStackTrace();
         }
