@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="toLearn" />
         </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="F:/IDE/mylib/commons-dbutils-1.7/commons-dbutils-1.7.jar" />
+          <element id="file-copy" path="F:/IDE/mylib/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" />
+        </element>
       </element>
     </root>
   </artifact>
