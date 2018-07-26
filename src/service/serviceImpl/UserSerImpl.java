@@ -13,7 +13,9 @@ public class UserSerImpl implements UserService {
 
     //通过用户名得到用户
     public User getUser(String name){
-        return userDao.getUserByName(name);
+        User rs = userDao.getUserByName(name);
+        rs.setPassword("");
+        return rs;
     }
 
     //添加用户

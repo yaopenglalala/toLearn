@@ -1,8 +1,11 @@
 package model;
 
+import controller.ControllerUtil;
+
 import java.io.Serializable;
 
 public class Course implements Serializable {
+    private final static String COURSEIMGPATH = "res/course_img/";
     private Integer courseId;
     private Integer userId;
     private String courseName;
@@ -38,5 +41,11 @@ public class Course implements Serializable {
 
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
+    }
+
+    public String getCourseImage() {
+        String imgPath = COURSEIMGPATH + courseId +".png";
+        if (ControllerUtil.checkFileExist(imgPath)) return imgPath;
+        else return COURSEIMGPATH + "default_background.jpg";
     }
 }

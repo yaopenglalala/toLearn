@@ -32,7 +32,7 @@ public class TaskDao extends JdbcDaoImpl<Task> {
 
     public boolean updateTask(Task task){
         if (getTaskByTaskId(task.getTaskId()) == null) return false;
-        String sql = "UPDATE chapter_info SET task_name=?, task_detail=? where task_id = ?";
+        String sql = "UPDATE task SET task_name=?, task_detail=? where task_id = ?";
         update(connection,sql,task.getTaskName(),task.getTaskDetail(),task.getTaskId());
         return true;
     }

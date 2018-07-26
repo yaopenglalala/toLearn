@@ -3,13 +3,16 @@ package dao.daoInterface;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.rmi.MarshalledObject;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 public class JdbcDaoImpl<T> implements DAO<T> {
     private QueryRunner queryRunner = null;
@@ -70,6 +73,15 @@ public class JdbcDaoImpl<T> implements DAO<T> {
     public <E> E getValue(Connection connection, String sql, Object... args) throws Exception {
         try{
             return (E) queryRunner.execute(connection, sql, new ScalarHandler(), args);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Map<String , Object>> getMap(Connection connection, String sql, Object... args){
+        try{
+            return queryRunner.query(connection, sql, new MapListHandler(), args);
         } catch (SQLException e){
             e.printStackTrace();
         }

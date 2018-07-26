@@ -7,13 +7,14 @@ import java.util.Properties;
 
 public class JDBCUtil {
     private static Connection connection;
+    private static final String FILEPATH =  JDBCUtil.class.getClassLoader().getResource("./dao/database.properties").getPath();
 
     public static Connection getConnection(){
         if (connection != null) return connection;
 
         try{
             Properties properties = new Properties();
-            properties.load(new FileInputStream("src/dao/database.properties"));
+            properties.load(new FileInputStream(FILEPATH));
             String JDBC_DRIVER = properties.getProperty("jdbcdriver");
             String DB_URL = properties.getProperty("dburl");
             String USER = properties.getProperty("user");

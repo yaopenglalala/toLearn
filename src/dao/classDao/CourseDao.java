@@ -31,9 +31,9 @@ public class CourseDao extends JdbcDaoImpl<Course> {
 
     public boolean updateCourse(Course course){
         if (getCourseByCourseId(course.getCourseId()) == null) return false;
-        String sql = "UPDATE course_info SET user_id=?, course_name=? where course_id = ?";
-        update(connection,sql,course.getUserId(),course.getCourseName(),course.getIntroduction(), course.getCourseId());
-        return false;
+        String sql = "UPDATE course_info SET course_name=? where course_id = ?";
+        update(connection,sql,course.getCourseName(),course.getIntroduction(), course.getCourseId());
+        return true;
     }
 
     public Course getCourseByCourseId(Integer id){
@@ -46,6 +46,12 @@ public class CourseDao extends JdbcDaoImpl<Course> {
         String sql = "SELECT course_id courseId, user_id userId, course_name courseName, introduction " +
                 "FROM course_info where user_id = ?";
         return getList(connection, sql, id);
+    }
+
+    public List<Course> getNewCourses(Integer num){
+        String sql = "SELECT course_id courseId, user_id userId, course_name courseName, introduction " +
+                "FROM course_info ORDER BY course_id LIMIT ?";
+        return getList(connection, sql, num);
     }
 
     private static void init() {

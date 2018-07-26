@@ -23,6 +23,12 @@ public interface CourseService {
     //修改课程信息
     boolean updateCourse(Course course);
 
+    //得到最热门课程
+    List<Course> getHotCourses(int num);
+
+    //得到最新课程
+    List<Course> getNewCourses(int num);
+
     //搜索
     //todo
 }
