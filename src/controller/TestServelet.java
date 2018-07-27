@@ -1,9 +1,5 @@
 package controller;
 
-import com.sun.deploy.net.HttpRequest;
-import com.sun.deploy.net.HttpResponse;
-import javafx.application.Application;
-import javafx.stage.Stage;
 import model.User;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
@@ -15,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @WebServlet(urlPatterns = "/test")
@@ -24,7 +18,7 @@ public class TestServelet extends HttpServlet {
     UserService userService = new UserSerImpl();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response){
-        User user = new UserSerImpl().getUser("fsa");
+        User user = new UserSerImpl().getUserByName("fsa");
         getServletContext().setAttribute("a",user);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/hide.jsp");
         try {

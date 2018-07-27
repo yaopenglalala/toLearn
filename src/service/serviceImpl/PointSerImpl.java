@@ -1,7 +1,9 @@
 package service.serviceImpl;
 
+import dao.classDao.ChapterDao;
 import dao.classDao.PointDao;
-import model.Chapter;
+
+import model.Course;
 import model.Point;
 import service.ChapterService;
 import service.CourseService;
@@ -47,4 +49,14 @@ public class PointSerImpl implements PointService {
             return true;
         }
     }
+
+    @Override
+    public Course getCourseByPoint(Point point) {
+        ChapterService chapterService = new ChapterSerImpl();
+        CourseService courseService = new CourseSerImpl();
+
+        return courseService.getCourseByCourseId(chapterService.getChapter(point.getChapterId()).getCourseId());
+    }
+
+
 }

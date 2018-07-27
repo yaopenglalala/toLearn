@@ -12,10 +12,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  <form action="test" method="post">
-      <input type="submit" value="test">
-  </form>
-  <img src=${url} />
   <%
     response.sendRedirect("/home");
   %>

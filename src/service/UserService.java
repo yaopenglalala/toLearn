@@ -4,7 +4,10 @@ import model.User;
 
 public interface UserService {
     //通过用户名得到用户
-    User getUser(String name);
+    User getUserByName(String name);
+
+    //通过用户id得到用户
+    User getUserById(Integer userId);
 
     //添加用户
     boolean addUser(String userName, String password);

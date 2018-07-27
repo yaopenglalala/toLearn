@@ -50,7 +50,7 @@ public class CourseDao extends JdbcDaoImpl<Course> {
 
     public List<Course> getNewCourses(Integer num){
         String sql = "SELECT course_id courseId, user_id userId, course_name courseName, introduction " +
-                "FROM course_info ORDER BY course_id LIMIT ?";
+                "FROM course_info ORDER BY course_id DESC LIMIT ?";
         return getList(connection, sql, num);
     }
 

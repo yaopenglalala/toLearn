@@ -18,7 +18,7 @@
 //        userSerImpl.addUser("fsa", "ffsa");
 //        System.out.println(userSerImpl.checkUser("fsa","ffsa"));
 //        System.out.println(userSerImpl.removeUser(25));
-//        User user =  userSerImpl.getUser("fsa");
+//        User user =  userSerImpl.getUserByName("fsa");
 //        user.setPassword("f123456");
 //        userSerImpl.updateUser(user);
 //
