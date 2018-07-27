@@ -12,8 +12,15 @@ public class UserSerImpl implements UserService {
     }
 
     //通过用户名得到用户
-    public User getUser(String name){
+    public User getUserByName(String name){
         User rs = userDao.getUserByName(name);
+        rs.setPassword("");
+        return rs;
+    }
+
+    @Override
+    public User getUserById(Integer userId) {
+        User rs = userDao.getUserById(userId);
         rs.setPassword("");
         return rs;
     }
@@ -21,6 +28,8 @@ public class UserSerImpl implements UserService {
     //添加用户
     public boolean addUser(String userName, String password){
         User user = new User();
+        if (userName == null || password == null ||
+                userName.equals("") || password.equals("")) return false;
         user.setUserName(userName);
         user.setPassword(password);
         return userDao.addUser(user);
@@ -36,7 +45,7 @@ public class UserSerImpl implements UserService {
     //检测用户密码是否正确
     public boolean checkUser(String userName, String password){
         User user = userDao.getUserByName(userName);
-        if (user == null) return false;
+        if (user == null || user.getUserId() == 0) return false;
         else return user.getPassword().equals(password);
     }
 

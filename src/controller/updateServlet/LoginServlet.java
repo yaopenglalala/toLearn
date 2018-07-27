@@ -1,5 +1,6 @@
-package controller;
+package controller.updateServlet;
 
+import controller.ControllerUtil;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
 
@@ -15,13 +16,18 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter("username").trim();
-        String password = req.getParameter("password").trim();
+        String userName = req.getParameter("username");
+        String password = req.getParameter("password");
+        if (userName == null) userName = "";
+        if (password == null) password = "";
+        userName = userName.trim();
+        password = password.trim();
 
         UserService userService = new UserSerImpl();
 
+        System.out.println(userName);
+
         if (userService.checkUser(userName, password)) {
-            //req.getSession().setAttribute("user",null);
             String file = "res/default_background.jpg";
             if (ControllerUtil.checkFileExist(file)){
                 req.getSession().setAttribute("url", file);
@@ -29,10 +35,15 @@ public class LoginServlet extends HttpServlet {
                 for (File file1 : files){
                     System.out.println(file1.getPath());
                 }
+                resp.sendRedirect("/index.jsp");
             } else {
                 req.getSession().setAttribute("url", null);
             }
-            resp.sendRedirect("/index.jsp");
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }

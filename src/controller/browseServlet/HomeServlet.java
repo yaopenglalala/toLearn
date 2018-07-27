@@ -1,4 +1,4 @@
-package controller;
+package controller.browseServlet;
 
 import model.Course;
 import service.CourseService;
@@ -20,14 +20,12 @@ public class HomeServlet  extends HttpServlet {
         CourseService courseService = new CourseSerImpl();
         List<Course> hotCourses = courseService.getHotCourses(3);
         List<Course> newCourses = courseService.getNewCourses(3);
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/home.jsp");
+
         req.setAttribute("hotCourses", hotCourses);
         req.setAttribute("newCourses", newCourses);
-        try {
-            requestDispatcher.forward(req, resp);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/home.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package service;
 
 import model.Chapter;
+import model.Course;
 import model.Point;
 
 import java.util.List;
@@ -21,6 +22,5 @@ public interface PointService {
     //修改知识点信息
     boolean updatePoint(Point point);
 
-    //搜索
-    //todo
+    Course getCourseByPoint(Point point);
 }
