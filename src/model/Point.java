@@ -43,8 +43,8 @@ public class Point implements Serializable {
         if (ControllerUtil.checkFileExist(pointVideoPath)){
             File dir = new File(pointVideoPath);
             if (dir.isDirectory()){
-                for (File file : dir.listFiles()){
-                    rs.add(pointVideoPath + file.getName());
+                for (String fileName : dir.list()){
+                    rs.add(pointVideoPath + fileName);
                 }
             }
         }

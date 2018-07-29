@@ -2,6 +2,7 @@ package model;
 
 import controller.ControllerUtil;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class Course implements Serializable {
@@ -44,8 +45,11 @@ public class Course implements Serializable {
     }
 
     public String getCourseImage() {
-        String imgPath = COURSEIMGPATH + courseId +".png";
-        if (ControllerUtil.checkFileExist(imgPath)) return imgPath;
-        else return COURSEIMGPATH + "default_background.jpg";
+        String imgPath = COURSEIMGPATH + courseId + "/";
+        if (ControllerUtil.checkFileExist(imgPath)) {
+            File[] files = ControllerUtil.getFilesByPath(imgPath);
+            if (files.length > 0) return imgPath + files[0].getName();
+        }
+        return COURSEIMGPATH + "default_background.jpg";
     }
 }

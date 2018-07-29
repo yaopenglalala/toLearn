@@ -3,10 +3,13 @@ package controller.browseServlet;
 import model.Chapter;
 import model.Course;
 import model.Point;
+import model.User;
 import service.ChapterService;
 import service.PointService;
+import service.SelectionRecordService;
 import service.serviceImpl.ChapterSerImpl;
 import service.serviceImpl.PointSerImpl;
+import service.serviceImpl.SelectionRecordSerImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,25 +28,45 @@ public class PointServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ChapterService chapterService = new ChapterSerImpl();
         PointService pointService  = new PointSerImpl();
+        SelectionRecordService selectionRecordService = new SelectionRecordSerImpl();
 
-        Integer pointId = Integer.parseInt(req.getParameter("pointId"));
-
-        Point point = pointService.getPoint(pointId);
-        Course course = pointService.getCourseByPoint(point);
-
-        List<Chapter> chapters = chapterService.getChapters(course.getCourseId());
-        Map<Integer, List<Point>> points = new HashMap<>();
-        for (Chapter chapter : chapters){
-            Integer chapterId = chapter.getChapterId();
-            List<Point> pointList = pointService.getPoints(chapterId);
-            points.put(chapterId, pointList);
+        //得到课程
+        Point point;
+        Course course;
+        try{
+            Integer pointId = Integer.parseInt(req.getParameter("pointid"));
+            point = pointService.getPoint(pointId);
+            course = pointService.getCourseByPoint(point);
+        } catch (Exception e){
+            //e.printStackTrace();
+            resp.sendRedirect("/home");
+            return;
         }
 
-        req.setAttribute("course",course);
-        req.setAttribute("chapters", chapters);
-        req.setAttribute("points", points);
+        User user = (User) req.getSession().getAttribute("user");
+        //是否登录
+        if (user == null) resp.sendRedirect("/login");
+        //是否选课
+        else if (!selectionRecordService.checkSelection(user.getUserId(), course.getCourseId())){
+            resp.sendRedirect("/detail?courseid=" + course.getCourseId());
+        } else {
+            //得到页面所需的内容
+            List<Chapter> chapters = chapterService.getChapters(course.getCourseId());
+            Map<Integer, List<Point>> points = new HashMap<>();
+            for (Chapter chapter : chapters){
+                Integer chapterId = chapter.getChapterId();
+                List<Point> pointList = pointService.getPoints(chapterId);
+                points.put(chapterId, pointList);
+            }
+            List<String> videos = point.getVideoPathes();
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/point.jsp");
-        requestDispatcher.forward(req, resp);
+            req.setAttribute("course",course);
+            req.setAttribute("chapters", chapters);
+            req.setAttribute("points", points);
+            req.setAttribute("videos", videos);
+
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/point.jsp");
+            requestDispatcher.forward(req, resp);
+        }
     }
 }

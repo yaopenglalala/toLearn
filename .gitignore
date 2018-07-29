@@ -4,6 +4,7 @@
 /json/test.json
 /web/res/
 /web/classes
+/.idea/artifacts/toLearn_war_exploded.xml
 
 # mac bin
 .DS_Store

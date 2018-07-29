@@ -19,7 +19,7 @@ public class HomeServlet  extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CourseService courseService = new CourseSerImpl();
         List<Course> hotCourses = courseService.getHotCourses(3);
-        List<Course> newCourses = courseService.getNewCourses(3);
+        List<Course> newCourses = courseService.getNewCourses(4);
 
         req.setAttribute("hotCourses", hotCourses);
         req.setAttribute("newCourses", newCourses);

@@ -4,16 +4,16 @@ import controller.ControllerUtil;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/login")
-public class LoginServlet extends HttpServlet {
+public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("username");
@@ -27,23 +27,21 @@ public class LoginServlet extends HttpServlet {
 
         System.out.println(userName);
 
-        if (userService.checkUser(userName, password)) {
-            String file = "res/default_background.jpg";
-            if (ControllerUtil.checkFileExist(file)){
-                req.getSession().setAttribute("url", file);
-                File[] files = ControllerUtil.getFilesByPath("res/course_img");
-                for (File file1 : files){
-                    System.out.println(file1.getPath());
-                }
-                resp.sendRedirect("/index.jsp");
-            } else {
-                req.getSession().setAttribute("url", null);
-            }
+        if (userService.getUserByName(userName) == null) {
+            req.setAttribute("err", "This user doesn't exist!");
+            doGet(req, resp);
+        } else if (!userService.checkUser(userName, password)){
+            req.setAttribute("err", "Password is wrong!");
+            doGet(req,resp);
+        } else {
+            req.getSession().setAttribute("user", userService.getUserByName(userName));
+            resp.sendRedirect("/home");
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/login.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }

@@ -28,20 +28,26 @@ public class TaskServlet extends HttpServlet {
         CourseService courseService = new CourseSerImpl();
 
         User user = (User) req.getSession().getAttribute("user");
-        Integer courseid = Integer.parseInt(req.getParameter("courseid"));
-        Course course = courseService.getCourseByCourseId(courseid);
-
-        if (user == null){
+        if (user == null) {
             resp.sendRedirect("/login");
-        } else if (! selectionRecordService.checkSelection(user.getUserId(), courseid) &&
-                    course.getUserId() != user.getUserId()){
-            resp.sendRedirect("/point?courseid=" + courseid);
-        } else {
-            List<Task> tasks = taskService.getTasks(courseid);
-            req.setAttribute("tasks", tasks);
+            return;
+        }
 
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/task.jsp");
-            requestDispatcher.forward(req, resp);
+        try {//可能会出现无courseid，courseid找不到对应课程
+            Integer courseid = Integer.parseInt(req.getParameter("courseid"));
+            Course course = courseService.getCourseByCourseId(courseid);
+            if (! selectionRecordService.checkSelection(user.getUserId(), courseid) &&
+                    ! course.getUserId().equals(user.getUserId())){
+                resp.sendRedirect("/detail?courseid=" + courseid);
+            } else {
+                List<Task> tasks = taskService.getTasks(courseid);
+                req.setAttribute("tasks", tasks);
+
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/task.jsp");
+                requestDispatcher.forward(req, resp);
+            }
+        } catch (Exception e){
+            resp.sendRedirect("/home");
         }
     }
 }

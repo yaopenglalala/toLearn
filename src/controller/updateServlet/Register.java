@@ -3,6 +3,7 @@ package controller.updateServlet;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
+public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("username");
@@ -23,9 +24,21 @@ public class RegisterServlet extends HttpServlet {
 
         UserService userService = new UserSerImpl();
 
-        if (userService.addUser(userName, password)){
+        if (userName.equals("")){
+            req.setAttribute("err", "Invalid user name");
+        } else if (userService.getUserByName(userName) != null) {
+            req.setAttribute("err", "This user exists!");
+            doGet(req, resp);
+        } else {
+            userService.addUser(userName, password);
             req.getSession().setAttribute("user", userService.getUserByName(userName));
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect("/home");
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/register.jsp");
+        requestDispatcher.forward(req, resp);
     }
 }

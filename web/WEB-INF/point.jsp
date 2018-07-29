@@ -21,6 +21,9 @@
 
     //章节对应的知识点，以<Integer, List<Point>>存储，即章节id对应知识点列表
     Map<Integer, List<Point>> points = (Map<Integer, List<Point>>) request.getAttribute("points");
+
+    //知识点对应的视频文件名列表
+    List<String> videos = (List<String>) request.getAttribute("videos");
 %>
 <%-----------%>
 <html>
