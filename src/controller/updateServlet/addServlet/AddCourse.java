@@ -1,4 +1,4 @@
-package controller.updateServlet;
+package controller.updateServlet.addServlet;
 
 import controller.ControllerUtil;
 import model.Course;
@@ -22,10 +22,6 @@ public class AddCourse extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
-        if (user == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
 
         CourseService courseService = new CourseSerImpl();
 

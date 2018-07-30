@@ -30,5 +30,6 @@ public interface CourseService {
     List<Course> getNewCourses(int num);
 
     //搜索
-    //todo
+    List<Course> searchCoursesByName(String name);
+    List<Course> searchCoursesByIntro(String introduction);
 }

@@ -1,4 +1,4 @@
-package controller.updateServlet;
+package controller.updateServlet.addServlet;
 
 import service.UserService;
 import service.serviceImpl.UserSerImpl;

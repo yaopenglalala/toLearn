@@ -4,6 +4,8 @@ import dao.classDao.UserDao;
 import model.User;
 import service.UserService;
 
+import java.util.List;
+
 public class UserSerImpl implements UserService {
     private  UserDao userDao;
 
@@ -26,6 +28,7 @@ public class UserSerImpl implements UserService {
     }
 
     //添加用户
+    @Override
     public boolean addUser(String userName, String password){
         User user = new User();
         if (userName == null || password == null ||
@@ -36,6 +39,7 @@ public class UserSerImpl implements UserService {
     }
 
     //删除用户
+    @Override
     public boolean removeUser(Integer userId){
         User user = new User();
         user.setUserId(userId);
@@ -43,6 +47,7 @@ public class UserSerImpl implements UserService {
     }
 
     //检测用户密码是否正确
+    @Override
     public boolean checkUser(String userName, String password){
         User user = userDao.getUserByName(userName);
         if (user == null || user.getUserId() == 0) return false;
@@ -50,7 +55,20 @@ public class UserSerImpl implements UserService {
     }
 
     //修改用户信息
+    @Override
     public boolean updateUser(User user){
         return userDao.updateUser(user);
+    }
+
+    //搜索用户
+    @Override
+    public List<User> searchUser(String name) {
+        List<User> rs = userDao.searchUser(name);
+        if (rs != null){
+            for (User user : rs){
+                user.setPassword("");
+            }
+        }
+        return rs;
     }
 }

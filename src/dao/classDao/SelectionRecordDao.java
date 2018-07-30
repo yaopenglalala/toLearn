@@ -63,12 +63,21 @@ public class SelectionRecordDao extends JdbcDaoImpl<SelectionRecord> {
         List<Map<String, Object>> list = getMap(connection, sql, num);
         List<Integer> rs = new ArrayList<>();
         if (list == null) {
-            System.out.println("fdsafsda");
+            //System.out.println("fdsafsda");
         }
         for (Map<String, Object> map : list){
             rs.add((Integer) map.get("course_id"));
         }
         return rs;
+    }
+
+    public Integer getNumberOfSelection (Integer courseId){
+        String sql = "SELECT COUNT(*) as number " +
+                "FROM selection_record WHERE course_id = ?";
+        List<Map<String, Object>> list = getMap(connection, sql, courseId);
+        if (list == null || list.isEmpty()) {
+            return 0;
+        } else return (Integer) list.get(0).get("number");
     }
 
     private static void init() {

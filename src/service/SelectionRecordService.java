@@ -20,4 +20,7 @@ public interface SelectionRecordService {
 
     //得到选课名单
     List<User> getStudentList(Integer courseId);
+
+    //得到选课人数
+    Integer getSelectNumber(Integer courseId);
 }

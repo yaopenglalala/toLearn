@@ -1,4 +1,4 @@
-package controller.updateServlet;
+package controller.updateServlet.addServlet;
 
 import model.Point;
 import model.User;
@@ -18,12 +18,6 @@ import java.io.IOException;
 public class AddPoint extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
-        if (user == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
-
         PointService pointService = new PointSerImpl();
         ChapterService chapterService = new ChapterSerImpl();
 

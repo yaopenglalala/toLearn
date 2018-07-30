@@ -6,6 +6,7 @@ import model.User;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.List;
 
 public class UserDao extends JdbcDaoImpl<User> {
     private static Connection connection = JDBCUtil.getConnection();
@@ -44,6 +45,11 @@ public class UserDao extends JdbcDaoImpl<User> {
     public User getUserById(Integer id){
         String sql = "SELECT user_id userId, user_name userName, password FROM user_info where user_id = ?";
         return get(connection,sql,id);
+    }
+
+    public List<User> searchUser(String name){
+        String sql = "SELECT user_id userId, user_name userName, password FROM user_info where user_name LIKE ?";
+        return getList(connection,sql, "%"+ name + "%");
     }
 
     public boolean hasUserById(Integer id){

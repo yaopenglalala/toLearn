@@ -2,6 +2,8 @@ package service;
 
 import model.User;
 
+import java.util.List;
+
 public interface UserService {
     //通过用户名得到用户
     User getUserByName(String name);
@@ -22,5 +24,5 @@ public interface UserService {
     boolean updateUser(User user);
 
     //搜索
-    //todo
+    List<User> searchUser(String name);
 }

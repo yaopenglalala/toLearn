@@ -1,6 +1,5 @@
 package controller.updateServlet;
 
-import controller.ControllerUtil;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
 

@@ -1,4 +1,4 @@
-package controller.updateServlet;
+package controller.updateServlet.addServlet;
 
 import model.Task;
 import model.User;
@@ -16,12 +16,6 @@ import java.io.IOException;
 public class AddTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = (User) req.getSession().getAttribute("user");
-        if (user == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
-
         TaskService taskService = new TaskSerImpl();
 
         String courseIdString = req.getParameter("courseid");

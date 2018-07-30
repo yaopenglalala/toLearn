@@ -1,4 +1,4 @@
-package controller.updateServlet;
+package controller.updateServlet.addServlet;
 
 import model.User;
 import service.SelectionRecordService;
@@ -16,10 +16,6 @@ public class AddRecord extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
-        if (user == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
 
         SelectionRecordService recordService = new SelectionRecordSerImpl();
 

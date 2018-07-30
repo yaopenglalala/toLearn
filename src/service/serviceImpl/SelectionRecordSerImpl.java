@@ -68,4 +68,9 @@ public class SelectionRecordSerImpl implements SelectionRecordService {
         }
         return rs;
     }
+
+    @Override
+    public Integer getSelectNumber(Integer courseId) {
+        return selectionRecordDao.getNumberOfSelection(courseId);
+    }
 }

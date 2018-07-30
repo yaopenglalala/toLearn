@@ -54,6 +54,18 @@ public class CourseDao extends JdbcDaoImpl<Course> {
         return getList(connection, sql, num);
     }
 
+    public List<Course> searchCoursesByName(String courseName){
+        String sql = "SELECT course_id courseId, user_id userId, course_name courseName, introduction " +
+                "FROM course_info WHERE course_name LIKE ?";
+        return getList(connection, sql, "%" + courseName + "%");
+    }
+
+    public List<Course> searchCoursesByIntro(String introduction){
+        String sql = "SELECT course_id courseId, user_id userId, course_name courseName, introduction " +
+                "FROM course_info WHERE introduction LIKE ?";
+        return getList(connection, sql, "%" + introduction + "%");
+    }
+
     private static void init() {
         try {
             Statement statement = connection.createStatement();
