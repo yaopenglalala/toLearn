@@ -66,8 +66,10 @@ public class SelectionRecordDao extends JdbcDaoImpl<SelectionRecord> {
             //System.out.println("fdsafsda");
         }
         for (Map<String, Object> map : list){
+            //System.out.println(map);
             rs.add((Integer) map.get("course_id"));
         }
+        //System.out.println(rs);
         return rs;
     }
 

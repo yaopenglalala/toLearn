@@ -24,7 +24,7 @@
 </head>
 <body>
 <%
-    for (Course course : newCourses){
+    for (Course course : hotCourses){
         out.print("so hot " + course.getCourseName());
         out.print("<img src=\""+course.getCourseImage() +"\" />");
     }
