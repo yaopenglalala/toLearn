@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Chapter" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="model.Point" %><%--
+<%@ page import="model.Point" %>
+<%--
   Created by IntelliJ IDEA.
   User: 妖风
   Date: 2018/7/26
@@ -22,11 +23,53 @@
     Map<Integer, List<Point>> points = (Map<Integer, List<Point>>) request.getAttribute("points");
 %>
 <%-----------%>
+<%@ include file="top.jsp"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>To Learn</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="container" style="padding: 10px;">
 
+    <h3><span class="badge badge-secondary"><%=course.getCourseName()%></span></h3>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-6">
+            <div id="accordion">
+                <div class="card">
+                <!--对章节循环-->
+                <% for (Chapter chapter:chapters){ %>
+                    <div class="card-header" id="heading37">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse37" aria-expanded="false" aria-controls="collapse37">
+                                <%=chapter.getChapterName()%>
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse37" class="collapse" aria-labelledby="heading37" data-parent="#accordion" style="">
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <!-- 对章节知识点循环 -->
+                                <% for (Point point:points.get(course.getCourseId())){%>
+                                <li class="list-group-item list-group-item-action"><a href="point?pointId=<%=point.getPointId()%>"><%=point.getPointName()%></a></li>
+                                <%}%>
+                            </ul>
+                        </div>
+                    </div>
+                <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"> </div>
+        <div class="col-4">
+            <% if (course.getUserId().equals(user.getUserId())){%>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal"> 添加章节 </button>
+            <%}%>
+        </div>
+    </div>
+</div>
 </body>
 </html>
