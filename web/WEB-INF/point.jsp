@@ -26,9 +26,10 @@
     List<String> videos = (List<String>) request.getAttribute("videos");
 %>
 <%-----------%>
+<%@ include file="top.jsp"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>To Learn</title>
 </head>
 <body>
 

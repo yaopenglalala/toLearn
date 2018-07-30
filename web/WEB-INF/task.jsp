@@ -13,9 +13,10 @@
     List<Task> tasks = (List<Task>) request.getAttribute("tasks");
 %>
 <%-----------%>
+<%@ include file="top.jsp"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>To Learn</title>
 </head>
 <body>
 <%

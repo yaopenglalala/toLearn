@@ -16,9 +16,10 @@
     Course[] newCourses = (Course[]) request.getAttribute("newCourses");
 %>
 <%-----------%>
+<%@ include file="top.jsp"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>To Learn</title>
 </head>
 <body>
 
