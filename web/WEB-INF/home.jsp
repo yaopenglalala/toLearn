@@ -31,15 +31,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<<<<<<< Updated upstream
-<%
-    for (Course course : hotCourses){
-        out.print("so hot " + course.getCourseName());
-        out.print("<img src=\""+course.getCourseImage() +"\" />");
-    }
-%>
-=======
-
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -106,9 +97,5 @@
 
     </div>
 </div>
-
-
-
->>>>>>> Stashed changes
 </body>
 </html>
