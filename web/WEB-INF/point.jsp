@@ -27,11 +27,41 @@
 %>
 <%-----------%>
 <%@ include file="top.jsp"%>
+<% String pointId = request.getParameter("pointId");%>
 <html>
 <head>
     <title>To Learn</title>
 </head>
 <body>
+<div class="container" style="padding: 10px;">
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-4">
+            <%for(Chapter chapter:chapters){%>
+            <div class="list-group" style="margin-top: 10px;">
+                <a href="#" class="list-group-item list-group-item-action active"><%=chapter.getChapterName()%></a>
+                <% for(Point point:points.get(chapter.getChapterId())){%>
+                <a href="point?pointId=<%=point.getPointId()%>" class="list-group-item list-group-item-action"><%=point.getPointName()%></a>
+                <%}%>
+            </div>
+            <%}%>
+        </div>
+        <div class="col-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <%Point point = points.%>
+                    <li class="breadcrumb-item"><a href="#">计算机网络</a></li>
+                    <li class="breadcrumb-item"><a href="#">路由器</a></li>
+                </ol>
+            </nav>
+            <video style="width: 100%; margin-top: 20px;" src="res/video/1531677955147.mp4" controls="controls">
+                您的浏览器不支持 video 标签。
+            </video>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

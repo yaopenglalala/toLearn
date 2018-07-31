@@ -7,7 +7,8 @@
 </head>
 <body>
 <main class="register-img row">
-    <div class="col-md-4 offset-md-6 card ">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 card">
         <div class="card-header">注册</div>
         <form class="card-body" method="post" action="login.jsp" onsubmit="return signupCheck();">
             <div class="form-group">
@@ -46,6 +47,7 @@
             </div>
         </form>
     </div>
+    <div class="col-lg-3"></div>
 </main>
 <script src="../js/sign.js"></script>
 </body>

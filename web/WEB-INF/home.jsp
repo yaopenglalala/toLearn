@@ -31,17 +31,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
-<<<<<<< Updated upstream
-<%
-    for (Course course : newCourses){
-        out.print("so hot " + course.getCourseName());
-        out.print("<img src=\""+course.getCourseImage() +"\" />");
-    }
-%>
-=======
-
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators" style="margin-left: 20%">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -49,18 +40,17 @@
     <div class="carousel-inner">
     <%
         int size = hotCourses.size();
-        for (int i = 0; i < size ; i++){%>
-        <div class="carousel-item<%
-                    if (i == 0){
-                out.print("active");
+        for (int i = 0; i < size ; i++){
+
+            if (i == 0){
+                out.print("<div class=\"carousel-item active\"</div>");
             }else {
-                out.print("carousel-item");
+                out.print("<div class=\"carousel-item\"</div>");
             }%>
-        %>"></div>
             <img class="d-block w-100" src="<%=hotCourses.get(i).getCourseImage()%>">
             <div class="carousel-caption d-none d-md-block">
-                <h5><%=hotCourses.get(i).getCourseName()%></h5>
-                <p><%=hotCourses.get(i).getIntroduction()%></p>
+                <h5 style="color: black"><%=hotCourses.get(i).getCourseName()%></h5>
+                <p style="color: black"><%=hotCourses.get(i).getIntroduction()%></p>
             </div>
         </div>
     <%}%>
@@ -79,7 +69,7 @@
     <div class="container bgred">
         <div class="work_top text-center">
             <h3>Our Courses</h3>
-            <p>We display our popular courses below</p>
+            <p>We display our latest courses below</p>
             <span> </span>
         </div>
 
@@ -93,7 +83,7 @@
                 </div>
                 <div class="port-grid-pic block last">
                     <a href="#">
-                        <img src="<%=newCourses.get(i).getCourseImage()%>" class="img-responsive">
+                        <img style="width: 295px;height: 274px" src="<%=newCourses.get(i).getCourseImage()%>" class="img-responsive">
                         <div class="b-wrapper"></div>
                     </a>
                 </div>
@@ -106,9 +96,5 @@
 
     </div>
 </div>
-
-
-
->>>>>>> Stashed changes
 </body>
 </html>

@@ -7,17 +7,18 @@
 </head>
 <body>
 <main class="login-img row">
-    <div class="col-md-4 offset-md-6 card ">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6 card">
         <div class="card-header">登陆</div>
-        <form class="card-body" id="form-login" method="post" action="login.jsp" onsubmit="return incheck();">
+        <form class="card-body" id="form-login" method="post" action="login" onsubmit="return signinCheck();">
             <div class="form-group">
-                <label for="user-name">用户名：</label>
-                <input class="form-control" type="text" name="username" id="user-name" placeholder="请输入用户名" onblur="checkname1()">
+                <label for="login_name">用户名：</label>
+                <input class="form-control" type="text" name="username" id="login_name" placeholder="请输入用户名" onblur="login_name()">
                 <div class="tips"> </div>
             </div>
             <div class="form-group">
-                <label for="user-psw">密码：</label>
-                <input type="password" class="form-control" id="user-psw" name="password" placeholder="请输入密码" onblur="checkpsw()">
+                <label for="login_psw">密码：</label>
+                <input type="password" class="form-control" id="login_psw" name="password" placeholder="请输入密码" onblur="login_psw()">
                 <div class="tips"> </div>
             </div>
             <div class="card-footer">
@@ -25,6 +26,7 @@
             </div>
         </form>
     </div>
+    <div class="col-lg-3"></div>
 </main>
 <script src="../js/sign.js"></script>
 </body>

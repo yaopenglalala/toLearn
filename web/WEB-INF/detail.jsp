@@ -47,6 +47,11 @@
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse37" aria-expanded="false" aria-controls="collapse37">
                                 <%=chapter.getChapterName()%>
                             </button>
+                            <% if (course.getUserId().equals(user.getUserId())){%>
+                            <button id="addPointButton38" chapterid="38" class="btn btn-link addPointButton" style="float: right;" data-toggle="modal" data-target="#addPointModal">
+                                添加知识点
+                            </button>
+                            <%}%>
                         </h5>
                     </div>
                     <div id="collapse37" class="collapse" aria-labelledby="heading37" data-parent="#accordion" style="">
