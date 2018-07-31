@@ -1,7 +1,9 @@
 package controller.updateServlet.addServlet;
 
+import controller.ControllerUtil;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,7 +32,7 @@ public class Register extends HttpServlet {
             req.setAttribute("err", "This user exists!");
             doGet(req, resp);
         } else {
-            userService.addUser(userName, password);
+            userService.addUser(userName, ControllerUtil.getMD5(password));
             req.getSession().setAttribute("user", userService.getUserByName(userName));
             resp.sendRedirect("/home");
         }

@@ -88,4 +88,12 @@ public class ControllerUtil {
     public static String getRespath(){
         return RESPATH;
     }
+
+    public static String getMD5(String string){
+
+    }
+
+    public static String checkMD5(String origin, String secret){
+
+    }
 }
