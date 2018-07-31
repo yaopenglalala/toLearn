@@ -3,7 +3,6 @@ package controller.updateServlet.addServlet;
 import controller.ControllerUtil;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
-import sun.misc.BASE64Decoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,15 +18,26 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("username");
         String password = req.getParameter("password");
+        String inputCode = req.getParameter("code");
         if (userName == null) userName = "";
         if (password == null) password = "";
+        if (inputCode == null) inputCode = "";
         userName = userName.trim();
         password = password.trim();
+        inputCode = inputCode.trim();
 
         UserService userService = new UserSerImpl();
+        Integer expectedCode = (Integer) req.getSession().getAttribute("code");
 
-        if (userName.equals("")){
+        if (inputCode.equals("")){
+            req.setAttribute("err", "You should input verification Code!");
+            doGet(req, resp);
+        } else if (userName.equals("")){
             req.setAttribute("err", "Invalid user name");
+            doGet(req, resp);
+        } else if (!inputCode.equals(expectedCode.toString())) {
+            req.setAttribute("err", "Wrong verification Code!");
+            doGet(req, resp);
         } else if (userService.getUserByName(userName) != null) {
             req.setAttribute("err", "This user exists!");
             doGet(req, resp);

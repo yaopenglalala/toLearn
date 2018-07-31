@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/detail","/myspace","/point","/source",
-            "/task", "/addChapter","/addCourse", "/addPoint",
+            "/task","/answer", "/addChapter","/addCourse", "/addPoint",
             "/addPointVideo", "/addRecord", "/addSource","/addTask",
-            "/modifyPoint", "/remove"})
+            "/ModifyPoint", "/remove"})
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

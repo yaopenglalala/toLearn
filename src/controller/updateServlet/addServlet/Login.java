@@ -1,5 +1,6 @@
 package controller.updateServlet.addServlet;
 
+import controller.ControllerUtil;
 import service.UserService;
 import service.serviceImpl.UserSerImpl;
 
@@ -29,7 +30,7 @@ public class Login extends HttpServlet {
         if (userService.getUserByName(userName) == null) {
             req.setAttribute("err", "This user doesn't exist!");
             doGet(req, resp);
-        } else if (!userService.checkUser(userName, password)){
+        } else if (!userService.checkUser(userName, ControllerUtil.getMD5(password))){
             req.setAttribute("err", "Password is wrong!");
             doGet(req,resp);
         } else {

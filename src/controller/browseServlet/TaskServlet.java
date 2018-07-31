@@ -28,10 +28,6 @@ public class TaskServlet extends HttpServlet {
         CourseService courseService = new CourseSerImpl();
 
         User user = (User) req.getSession().getAttribute("user");
-        if (user == null) {
-            resp.sendRedirect("/login");
-            return;
-        }
 
         try {//可能会出现无courseid，courseid找不到对应课程
             Integer courseid = Integer.parseInt(req.getParameter("courseid"));
@@ -40,6 +36,7 @@ public class TaskServlet extends HttpServlet {
                     ! course.getUserId().equals(user.getUserId())){
                 resp.sendRedirect("/detail?courseid=" + courseid);
             } else {
+                req.setAttribute("course", course);
                 List<Task> tasks = taskService.getTasks(courseid);
                 req.setAttribute("tasks", tasks);
 
