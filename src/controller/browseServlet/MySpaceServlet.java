@@ -27,10 +27,12 @@ public class MySpaceServlet extends HttpServlet {
         }
 
         String type = req.getParameter("type");
+        req.setAttribute("isSelected", false);
         List<Course> courses;
         if (type == null || !type.equals("open")){
-            courses = getOpenCourses(user);
-        } else courses = getSelectedCourses(user);
+            req.setAttribute("isSelected", true);
+            courses = getSelectedCourses(user);
+        } else courses = getOpenCourses(user);
 
         req.setAttribute("courses", courses);
         RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/myspace.jsp");

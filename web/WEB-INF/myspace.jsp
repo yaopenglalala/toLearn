@@ -1,5 +1,6 @@
-<%@ page import="model.Course" %><%--
-  Created by IntelliJ IDEA.
+<%@ page import="model.Course" %>
+<%@ page import="java.util.List" %>
+Created by IntelliJ IDEA.
   User: 妖风
   Date: 2018/7/26
   Time: 14:08
@@ -9,11 +10,12 @@
 <%@ include file="top.jsp"%>
 <%-----------%>
 <%
-    //选课列表
-    Course[] hotCourses = (Course[]) request.getAttribute("hotCourses");
+    //为true表示课程页面为我选的课
+    //为false表示课程页面为我开的课
+    Boolean selected = (boolean) request.getAttribute("isSelected");
 
-    //开课列表
-    Course[] newCourses = (Course[]) request.getAttribute("newCourses");
+    //课程列表
+    List<Course> courses = (List<Course>) request.getAttribute("courses");
 %>
 <%-----------%>
 <%@ include file="top.jsp"%>
