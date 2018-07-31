@@ -32,6 +32,5 @@
         <jarDirectory url="file://$MODULE_DIR$/web/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
