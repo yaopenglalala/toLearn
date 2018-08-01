@@ -23,7 +23,7 @@
     <title>To Learn</title>
 </head>
 <body>
-<a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%>></a>
+<h1><a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a></h1>
 <ul><%
     if (tasks != null) {
         for (Task task : tasks) {

@@ -20,7 +20,7 @@
     <title>Source</title>
 </head>
 <body>
-<a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a>
+<h1><a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a></h1>
 <br>
 <%
     if (sources != null) {

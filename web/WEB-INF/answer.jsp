@@ -30,7 +30,7 @@
     <title>Answer</title>
 </head>
 <body>
-<a href="/detail?courseid=<%=course.getCourseId()%>>"></a>
+<h1><a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a></h1>
 <h1><%=task.getTaskName()%></h1>
 <p><%= task.getTaskDetail()%></p>
 <% if (isTeacher){ %>
