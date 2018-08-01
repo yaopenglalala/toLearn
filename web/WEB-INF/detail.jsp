@@ -132,22 +132,23 @@
     </div>
 </div>
 <%
-    if (!isStudent){
+    if (!isStudent && !course.getUserId().equals(user.getUserId())){
         %>
 <form action="/addRecord" method="post">
     <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
     <input type="submit" value="Select it!"/>
 </form>
 <%
-    } else{
+    } else {
         %>
 <a href="/source?courseid=<%= course.getCourseId()%>">Source</a><br>
 <a href="/task?courseid=<%= course.getCourseId()%>">Tasks</a><br>
+<%      if (!course.getUserId().equals(user.getUserId())){ %>
 <form action="/removeRecord" method="post">
     <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
     <input type="submit" value="Quit class."/>
 </form>
-<%
+<%      }
     }
 %>
 

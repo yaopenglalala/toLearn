@@ -17,7 +17,7 @@ public class TaskDao extends JdbcDaoImpl<Task> {
 
     public boolean addTask(Task task) {
         String sql = "INSERT INTO task (course_id, task_name, task_detail) " +
-                "values (?,?)";
+                "values (?,?,?)";
         update(connection,sql,task.getCourseId(), task.getTaskName(), task.getTaskDetail());
         return true;
     }
