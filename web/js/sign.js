@@ -1,25 +1,46 @@
-// function signinCheck(){
-//   var validity = true;
-//   var username = document.getElementById("user-name").value;
-//   var password = document.getElementById("user-psw").value;
-//   if (username === "") {
-//     alert("请输入用户名");
-//   }
-//   else if (password === "") {
-//     alert("请输入密码");
-//   }
-// }
+var mail;
+function login_name() {
+    var name = document.getElementById("user-name").value;
+    var tip = document.getElementsByClassName('tips')[0];
+    if (name === "") {
+        tip.innerHTML = "请输入昵称";
+        return false;
+    }
+    else {
+        tip.innerHTML = "";
+        return true;
+    }
+}
+
+function login_psw() {
+    var psw = document.getElementById("user-psw").value;
+    var tip = document.getElementsByClassName('tips')[1];
+    if (psw === "") {
+        tip.innerHTML = "请输入密码";
+        return false;
+    }
+    else {
+        tip.innerHTML = "";
+        return true;
+    }
+}
+
+function signinCheck(){
+    login_name();
+    login_psw();
+    return login_name()&&login_psw();
+}
 
 function signupCheck(){
-  checkname();
-  checkpsw0();
+  // checkname();
+    checkemail();
+    checkpsw0();
   checkpsw1();
-  checkemail();
-  checkphone();
-  checkaddress();
-  return checkname()&&checkpsw0()&&checkpsw1()&&checkemail()
+
+  // checkphone();
+  // checkaddress();
+  return checkname()&&checkpsw0()&&checkpsw1()&&checkemail();
       // &&checkphone()&&checkaddress()
-      ;
 }
 
 function checkname(){
@@ -78,7 +99,7 @@ function checkpsw1(){
 
 function checkemail(){
   var email = document.getElementById("register-email").value;
-  var tip = document.getElementsByClassName('tips')[3];
+  var tip = document.getElementsByClassName('tips')[0];
 
   if (email === "") {
     tip.innerHTML = "请输入邮箱";
@@ -93,10 +114,17 @@ function checkemail(){
     }
     else {
       tip.innerHTML = "";
+      mail = email;
       return true;
     }
   }
 }
+
+function fillEmail() {
+    document.getElementById("codeMail").value=mail;
+}
+
+
 //
 // function checkphone(){
 //   var phone = document.getElementById("register-phone").value;
@@ -149,6 +177,6 @@ function incheck(){
   }
 }
 
-function goin(){
-  window.location.href="./signIn.php";
-}
+// function goin(){
+//   window.location.href="./signIn.php";
+// }

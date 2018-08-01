@@ -32,7 +32,7 @@
 </head>
 <body>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <ol class="carousel-indicators" style="margin-left: 20%">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -40,19 +40,20 @@
     <div class="carousel-inner">
     <%
         int size = hotCourses.size();
-        for (int i = 0; i < size ; i++){%>
-        <div class="carousel-item<%
-                    if (i == 0){
-                out.print("active");
+        for (int i = 0; i < size ; i++){
+
+            if (i == 0){
+                out.print("<div class=\"carousel-item active\"</div>");
             }else {
-                out.print("carousel-item");
+                out.print("<div class=\"carousel-item\"</div>");
             }%>
-        %>"></div>
+        <a href="detail?courseid=<%=hotCourses.get(i).getCourseId()%>">
             <img class="d-block w-100" src="<%=hotCourses.get(i).getCourseImage()%>">
             <div class="carousel-caption d-none d-md-block">
-                <h5><%=hotCourses.get(i).getCourseName()%></h5>
-                <p><%=hotCourses.get(i).getIntroduction()%></p>
+                <h5 style="color: black"><%=hotCourses.get(i).getCourseName()%></h5>
+                <p style="color: black"><%=hotCourses.get(i).getIntroduction()%></p>
             </div>
+        </a>
         </div>
     <%}%>
      </div>
@@ -70,7 +71,7 @@
     <div class="container bgred">
         <div class="work_top text-center">
             <h3>Our Courses</h3>
-            <p>We display our popular courses below</p>
+            <p>We display our latest courses below</p>
             <span> </span>
         </div>
 
@@ -78,22 +79,21 @@
         <div class="col_1_of_4 span_1_of_4">
             <div class="port-grid">
                 <div class="port-grid-text">
-                    <img src="../res/icon/arrow_icon.png" alt=""/>
-                    <h3><%=newCourses.get(i).getCourseName()%></h3>
-                    <p><%=newCourses.get(i).getIntroduction()%></p>
+                    <a href="detail?courseid=<%=newCourses.get(i).getCourseId()%>">
+                        <img src="../res/icon/arrow_icon.png" alt=""/>
+                        <h3><%=newCourses.get(i).getCourseName()%></h3>
+                        <p><%=newCourses.get(i).getIntroduction()%></p>
+                    </a>
                 </div>
                 <div class="port-grid-pic block last">
-                    <a href="#">
-                        <img src="<%=newCourses.get(i).getCourseImage()%>" class="img-responsive">
+                    <a href="detail?courseid=<%=newCourses.get(i).getCourseId()%>">
+                        <img style="width: 295px;height: 274px" src="<%=newCourses.get(i).getCourseImage()%>" class="img-responsive">
                         <div class="b-wrapper"></div>
                     </a>
                 </div>
             </div>
         </div>
         <% } %>
-
-
-
 
     </div>
 </div>

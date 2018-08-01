@@ -39,11 +39,55 @@
 %>
 <%-----------%>
 <%@ include file="top.jsp"%>
+<% String pointId = request.getParameter("pointId");%>
 <html>
 <head>
     <title>To Learn</title>
+    <script src="../js/preview.js"></script>
 </head>
 <body>
+<div class="container" style="padding: 10px;">
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-4">
+            <%for(Chapter chapter:chapters){%>
+            <div class="list-group" style="margin-top: 10px;">
+                <a href="#" class="list-group-item list-group-item-action active"><%=chapter.getChapterName()%></a>
+                <% for(Point point:points.get(chapter.getChapterId())){%>
+                <a href="point?pointId=<%=point.getPointId()%>" class="list-group-item list-group-item-action"><%=point.getPointName()%></a>
+                <%}%>
+            </div>
+            <%}%>
+        </div>
+
+        <div class="col-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"></a></li>
+                    <li class="breadcrumb-item"><a href="#">第一节</a></li>
+                </ol>
+            </nav>
+            <form method="post" action="addPointVideo" enctype="multipart/form-data">
+                <div class="form-group">
+                    <button id="video_chooser" type="button" class="btn btn-primary">选择视频</button>
+
+                    <button id="upload" type="submit" class="btn btn-primary">上传</button>
+
+                    <input name="pointId" value="27" hidden="">
+                    <input id="uploade_video" accept="video/mp4" type="file" name="video" hidden="">
+                </div>
+            </form>
+            <video style="width: 100%; margin-top: 20px;" src="<%=%>" controls="controls">
+                您的浏览器不支持 video 标签。
+            </video>
+
+
+
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>
