@@ -47,11 +47,13 @@
             }else {
                 out.print("<div class=\"carousel-item\"</div>");
             }%>
+        <a href="detail?courseid=<%=hotCourses.get(i).getCourseId()%>">
             <img class="d-block w-100" src="<%=hotCourses.get(i).getCourseImage()%>">
             <div class="carousel-caption d-none d-md-block">
                 <h5 style="color: black"><%=hotCourses.get(i).getCourseName()%></h5>
                 <p style="color: black"><%=hotCourses.get(i).getIntroduction()%></p>
             </div>
+        </a>
         </div>
     <%}%>
      </div>
@@ -77,12 +79,14 @@
         <div class="col_1_of_4 span_1_of_4">
             <div class="port-grid">
                 <div class="port-grid-text">
-                    <img src="../res/icon/arrow_icon.png" alt=""/>
-                    <h3><%=newCourses.get(i).getCourseName()%></h3>
-                    <p><%=newCourses.get(i).getIntroduction()%></p>
+                    <a href="detail?courseid=<%=newCourses.get(i).getCourseId()%>">
+                        <img src="../res/icon/arrow_icon.png" alt=""/>
+                        <h3><%=newCourses.get(i).getCourseName()%></h3>
+                        <p><%=newCourses.get(i).getIntroduction()%></p>
+                    </a>
                 </div>
                 <div class="port-grid-pic block last">
-                    <a href="#">
+                    <a href="detail?courseid=<%=newCourses.get(i).getCourseId()%>">
                         <img style="width: 295px;height: 274px" src="<%=newCourses.get(i).getCourseImage()%>" class="img-responsive">
                         <div class="b-wrapper"></div>
                     </a>
@@ -90,9 +94,6 @@
             </div>
         </div>
         <% } %>
-
-
-
 
     </div>
 </div>

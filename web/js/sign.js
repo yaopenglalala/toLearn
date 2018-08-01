@@ -1,4 +1,4 @@
-
+var mail;
 function login_name() {
     var name = document.getElementById("user-name").value;
     var tip = document.getElementsByClassName('tips')[0];
@@ -32,10 +32,11 @@ function signinCheck(){
 }
 
 function signupCheck(){
-  checkname();
-  checkpsw0();
+  // checkname();
+    checkemail();
+    checkpsw0();
   checkpsw1();
-  checkemail();
+
   // checkphone();
   // checkaddress();
   return checkname()&&checkpsw0()&&checkpsw1()&&checkemail();
@@ -98,7 +99,7 @@ function checkpsw1(){
 
 function checkemail(){
   var email = document.getElementById("register-email").value;
-  var tip = document.getElementsByClassName('tips')[3];
+  var tip = document.getElementsByClassName('tips')[0];
 
   if (email === "") {
     tip.innerHTML = "请输入邮箱";
@@ -113,10 +114,17 @@ function checkemail(){
     }
     else {
       tip.innerHTML = "";
+      mail = email;
       return true;
     }
   }
 }
+
+function fillEmail() {
+    document.getElementById("codeMail").value=mail;
+}
+
+
 //
 // function checkphone(){
 //   var phone = document.getElementById("register-phone").value;

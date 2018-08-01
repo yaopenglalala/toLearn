@@ -25,8 +25,6 @@ public class Login extends HttpServlet {
 
         UserService userService = new UserSerImpl();
 
-        System.out.println(userName);
-
         if (userService.getUserByName(userName) == null) {
             req.setAttribute("err", "This user doesn't exist!");
             doGet(req, resp);

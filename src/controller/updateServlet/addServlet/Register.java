@@ -29,15 +29,18 @@ public class Register extends HttpServlet {
         UserService userService = new UserSerImpl();
         Integer expectedCode = (Integer) req.getSession().getAttribute("code");
 
-        if (inputCode.equals("")){
-            req.setAttribute("err", "You should input verification Code!");
-            doGet(req, resp);
-        } else if (userName.equals("")){
+        System.out.println("username" + userName);
+
+//        if (inputCode.equals("")){
+//            req.setAttribute("err", "You should input verification Code!");
+//            doGet(req, resp);
+//        } else
+        if (userName.equals("")){
             req.setAttribute("err", "Invalid user name");
             doGet(req, resp);
-        } else if (!inputCode.equals(expectedCode.toString())) {
-            req.setAttribute("err", "Wrong verification Code!");
-            doGet(req, resp);
+//        } else if (!inputCode.equals(expectedCode.toString())) {
+//            req.setAttribute("err", "Wrong verification Code!");
+//            doGet(req, resp);
         } else if (userService.getUserByName(userName) != null) {
             req.setAttribute("err", "This user exists!");
             doGet(req, resp);
