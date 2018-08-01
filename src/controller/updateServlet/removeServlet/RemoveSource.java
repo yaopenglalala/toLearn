@@ -1,4 +1,4 @@
-package controller.updateServlet;
+package controller.updateServlet.removeServlet;
 
 import controller.ControllerUtil;
 

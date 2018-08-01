@@ -16,6 +16,15 @@
     //这个页面对应的课程
     Course course = (Course) request.getAttribute("course");
 
+    //这个页面对应的章节
+    Chapter chapter = (Chapter) request.getAttribute("chapter");
+
+    //这个页面对应的知识点
+    Point point = (Point) request.getAttribute("point");
+
+    //用户
+    User user = (User) request.getAttribute("user");
+
     //章节列表
     List<Chapter> chapters = (List<Chapter>) request.getAttribute("chapters");
 
@@ -24,6 +33,9 @@
 
     //知识点对应的视频文件名列表
     List<String> videos = (List<String>) request.getAttribute("videos");
+
+    //判断是否是老师
+    Boolean isTeacher = course.getUserId().equals(user.getUserId());
 %>
 <%-----------%>
 <%@ include file="top.jsp"%>

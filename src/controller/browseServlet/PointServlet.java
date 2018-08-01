@@ -31,11 +31,13 @@ public class PointServlet extends HttpServlet {
         SelectionRecordService selectionRecordService = new SelectionRecordSerImpl();
 
         //得到课程
-        Point point;
         Course course;
+        Chapter chapter;
+        Point point;
         try{
             Integer pointId = Integer.parseInt(req.getParameter("pointid"));
             point = pointService.getPoint(pointId);
+            chapter = chapterService.getChapter(point.getChapterId());
             course = pointService.getCourseByPoint(point);
         } catch (Exception e){
             //e.printStackTrace();
@@ -53,14 +55,16 @@ public class PointServlet extends HttpServlet {
             //得到页面所需的内容
             List<Chapter> chapters = chapterService.getChapters(course.getCourseId());
             Map<Integer, List<Point>> points = new HashMap<>();
-            for (Chapter chapter : chapters){
-                Integer chapterId = chapter.getChapterId();
+            for (Chapter chapter1 : chapters){
+                Integer chapterId = chapter1.getChapterId();
                 List<Point> pointList = pointService.getPoints(chapterId);
                 points.put(chapterId, pointList);
             }
             List<String> videos = point.getVideoPathes();
 
             req.setAttribute("course",course);
+            req.setAttribute("chapter", chapter);
+            req.setAttribute("point", point);
             req.setAttribute("chapters", chapters);
             req.setAttribute("points", points);
             req.setAttribute("videos", videos);
