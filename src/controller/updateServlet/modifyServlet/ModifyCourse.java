@@ -20,8 +20,8 @@ public class ModifyCourse extends HttpServlet {
 
         try{
             Integer courseId = Integer.parseInt(courseIdString);
-            String courseName = req.getParameter("course_name");
-            String introduction = req.getParameter("introduction");
+            String courseName = new String(req.getParameter("course_name").getBytes("ISO8859-1"),"UTF-8");
+            String introduction = new String(req.getParameter("introduction").getBytes("ISO8859-1"),"UTF-8");
 
             Course course = courseService.getCourseByCourseId(courseId);
             course.setCourseName(courseName);

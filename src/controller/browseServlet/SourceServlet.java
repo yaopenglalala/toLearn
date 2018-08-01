@@ -1,8 +1,11 @@
 package controller.browseServlet;
 
 import controller.ControllerUtil;
+import model.Course;
 import model.User;
+import service.CourseService;
 import service.SelectionRecordService;
+import service.serviceImpl.CourseSerImpl;
 import service.serviceImpl.SelectionRecordSerImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -40,6 +43,8 @@ public class SourceServlet extends HttpServlet{
                         materials.add(materialPath + file.getName());
                     }
                 }
+                CourseService courseService = new CourseSerImpl();
+                req.setAttribute("course", courseService.getCourseByCourseId(courseId));
                 req.setAttribute("sources", materials);
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/source.jsp");
                 requestDispatcher.forward(req, resp);

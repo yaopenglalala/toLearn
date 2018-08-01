@@ -19,10 +19,10 @@ public class AddTask extends HttpServlet {
         TaskService taskService = new TaskSerImpl();
 
         String courseIdString = req.getParameter("courseid");
-        String taskName = req.getParameter("name");
-        String taskDetail = req.getParameter("detail");
+        String taskName = new String(req.getParameter("name").getBytes("ISO8859-1"),"UTF-8");
+        String taskDetail = new String(req.getParameter("detail").getBytes("ISO8859-1"),"UTF-8");
 
-        if (courseIdString != null && taskName != null){
+        if (courseIdString != null){
             if (!courseIdString.trim().equals("") && !taskName.trim().equals("")){
                 Task task = new Task();
                 task.setCourseId(Integer.parseInt(courseIdString));

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/myspace","/point","/source",
+@WebFilter(urlPatterns = {"/detail","/myspace","/point","/source",
             "/task","/answer", "/addChapter","/addCourse", "/addPoint",
             "/addPointVideo", "/addRecord", "/addSource","/addTask",
             "/ModifyPoint", "/remove", })

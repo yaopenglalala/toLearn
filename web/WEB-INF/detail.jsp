@@ -3,6 +3,7 @@
 <%@ page import="model.Chapter" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="model.Point" %>
+<%@ page import="com.sun.org.apache.xpath.internal.operations.Bool" %>
 <%--
   Created by IntelliJ IDEA.
   User: 妖风
@@ -21,6 +22,9 @@
 
     //章节对应的知识点，以<Integer, List<Point>>存储，即章节id对应知识点列表
     Map<Integer, List<Point>> points = (Map<Integer, List<Point>>) request.getAttribute("points");
+
+    //是否是选课学生
+    Boolean isStudent = (Boolean) request.getAttribute("isStudent");
 %>
 <%-----------%>
 <%@ include file="top.jsp"%>
@@ -82,8 +86,8 @@
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <!-- 对章节知识点循环 -->
-                                <% for (Point point:points.get(course.getCourseId())){%>
-                                <li class="list-group-item list-group-item-action"><a href="point?pointId=<%=point.getPointId()%>"><%=point.getPointName()%></a></li>
+                                <% for (Point point:points.get(chapter.getChapterId())){%>
+                                <li class="list-group-item list-group-item-action"><a href="point?pointid=<%=point.getPointId()%>"><%=point.getPointName()%></a></li>
                                 <%}%>
                             </ul>
                         </div>
@@ -127,5 +131,25 @@
         </div>
     </div>
 </div>
+<%
+    if (!isStudent){
+        %>
+<form action="/addRecord" method="post">
+    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+    <input type="submit" value="Select it!"/>
+</form>
+<%
+    } else{
+        %>
+<a href="/source?courseid=<%= course.getCourseId()%>">Source</a><br>
+<a href="/task?courseid=<%= course.getCourseId()%>">Tasks</a><br>
+<form action="/removeRecord" method="post">
+    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+    <input type="submit" value="Quit class."/>
+</form>
+<%
+    }
+%>
+
 </body>
 </html>

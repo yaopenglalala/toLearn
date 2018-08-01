@@ -41,7 +41,7 @@ public class SearchServlet extends HttpServlet {
 //        jsonArray.addAll(courses);
 //
 //        out.print(jsonArray);
-        String courseName = req.getParameter("name");
+        String courseName = req.getParameter("coursename");
         String introduction = req.getParameter("introduction");
         String teacher = req.getParameter("teacher");
         String order = req.getParameter("order");
@@ -49,7 +49,11 @@ public class SearchServlet extends HttpServlet {
 
         //未输入页面信息
         if (pageString == null || pageString.equals("")) {
-            pageString = "1";
+            String uri = req.getRequestURI();
+            String queryString = req.getQueryString() == null ? "" : req.getQueryString() + "&&";
+            String url = uri + "?" + queryString + "page=1";
+            resp.sendRedirect(url);
+            return;
         }
 
         List<Course> courses = getCourses(courseName, introduction, teacher);
@@ -69,7 +73,7 @@ public class SearchServlet extends HttpServlet {
         if (start < 0 || start >= courses.size()){
             start = 0;
             end = 0;
-        } else if (end >= courses.size()){
+        } else if (end >= courses.size()){ ;
             end = courses.size();
         }
 
@@ -98,30 +102,33 @@ public class SearchServlet extends HttpServlet {
         //Get courses by name
         List<Course> nameCourseList = null;
         if (courseName != null && !courseName.equals("")) {
+            System.out.println("name " + courseName);
             nameCourseList = courseService.searchCoursesByName(courseName);
-        }
+        } else courseName = null;
 
         //Get courses by introduction
         List<Course> introCourseList = null;
         if (introduction != null && !introduction.equals("")){
+            System.out.println("intro " + introduction);
             introCourseList  = courseService.searchCoursesByIntro(introduction);
-        }
+        } else introduction = null;
 
         //Get courses by teacher
         List<User> userList;
         List<Course> teacherCourseList = new ArrayList<>();
         if (teacher != null && !teacher.equals("")){
+            System.out.println("teacher " + teacher);
             userList = userService.searchUser(teacher);
             if (userList != null && userList.size() > 0){
                 for (User user : userList){
                     teacherCourseList.addAll(courseService.getCoursesByUserId(user.getUserId()));
                 }
             }
-        }
-
+        } else teacher = null;
 
         //Get all courses
         if (courseName == null && introduction == null && teacher == null){
+            System.out.println("here all");
             return courseService.getAllCourses();
         }
 

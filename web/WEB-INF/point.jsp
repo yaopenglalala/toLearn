@@ -50,10 +50,10 @@
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-4">
-            <%for(Chapter chapter:chapters){%>
+            <%for(Chapter chapter1:chapters){%>
             <div class="list-group" style="margin-top: 10px;">
                 <a href="#" class="list-group-item list-group-item-action active"><%=chapter.getChapterName()%></a>
-                <% for(Point point:points.get(chapter.getChapterId())){%>
+                <% for(Point point1:points.get(chapter.getChapterId())){%>
                 <a href="point?pointId=<%=point.getPointId()%>" class="list-group-item list-group-item-action"><%=point.getPointName()%></a>
                 <%}%>
             </div>

@@ -10,6 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%-----------%>
+<%@include file="top.jsp"%>
 <%
     //课程
     Course course = (Course) request.getAttribute("course");
@@ -21,15 +22,55 @@
     Answer answer = (Answer) request.getAttribute("answer");
 
     //是否是老师
-    User user = (User) session.getAttribute("user");
     Boolean isTeacher = course.getUserId().equals(user.getUserId());
 %>
 <%-----------%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Answer</title>
 </head>
 <body>
-
+<a href="/detail?courseid=<%=course.getCourseId()%>>"></a>
+<h1><%=task.getTaskName()%></h1>
+<p><%= task.getTaskDetail()%></p>
+<%
+    if (isTeacher){
+        %>
+<form action="/modifyTask" method="post">
+   modify name<input type="text" name="name" />
+   modify detail<input type="text" name="detail"/>
+    <input type="submit" value="modify task">
+</form>
+<% } %>
+<br>
+<p>Your answer:</p>
+<%
+    if (answer == null){
+        %>
+<form action="/addAnswer" method="post" id="addForm">
+    <input type="text" name="taskid" value="<%= task.getTaskId()%>" hidden/>
+    <textarea name="answer" form="addForm"></textarea>
+    <input type="submit" value="submit">
+</form>
+<%
+    } else if (!course.getUserId().equals(user.getUserId())){
+        %>
+<form action="/modifyAnswer" method="post" id="editForm">
+    <input type="text" name="taskid" value="<%= task.getTaskId()%>" hidden />
+    <textarea name="answer" form="editForm"><%= answer.getAnswerContent()%> </textarea>
+    <input type="submit" value="Edit">
+</form>
+<%
+    } else {
+        %>
+<form action="/modifyTask" method="post" id="taskForm">
+    <input type="text" name="taskid" value="<%= answer.getAnswerContent()%>" hidden/>
+    Task name : <input type="text" name="name" value="<%= task.getTaskName()%>"/>
+    Task detail : <textarea name="detail" form="taskForm"><%= task.getTaskDetail()%></textarea>
+    <input type="submit" value="Edit this task"/>
+</form>
+<%
+    }
+%>
 </body>
 </html>

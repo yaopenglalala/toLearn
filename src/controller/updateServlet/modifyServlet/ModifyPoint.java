@@ -19,7 +19,7 @@ public class ModifyPoint extends HttpServlet {
         String pointIdString = req.getParameter("pointid");
         try{
             Integer pointId = Integer.parseInt(pointIdString);
-            String pointName = req.getParameter("point");
+            String pointName = new String(req.getParameter("point").getBytes("ISO8859-1"),"UTF-8");
 
             Point point = new Point();
 
