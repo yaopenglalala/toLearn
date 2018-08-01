@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: 妖风
   Date: 2018/7/31
@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     //资料路径列表
-    String hotCourses = (Course[]) request.getAttribute("hotCourses");
+    List<String> sources = (List<String>) request.getAttribute("sources");
 %>
 <%-----------%>
 <html>
