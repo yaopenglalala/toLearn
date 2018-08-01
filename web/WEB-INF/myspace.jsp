@@ -21,6 +21,11 @@
 <html>
 <head>
     <title>To Learn</title>
+    <script src="../js/preview.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -50,7 +55,40 @@
         </div>
         <%}%>
         <%}else{%>
-        <a href="search" class="btn btn-primary">添加课程</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> 添加课程 </button>
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">课程详情</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- 模态框主体 -->
+                    <div class="modal-body">
+                        <%--模态框内容..--%>
+                        <form id="addCourse" method="post" action="addCourse" enctype="multipart/form-data">
+                            <label for="nameAdd">课程名称</label>
+                            <input type="text" id="nameAdd" name="course_name">
+                            <label for="intrdAdd">课程描述</label>
+                            <input type="text" id="intrdAdd" name="introduction">
+                            <label for="picAdd">课程封面</label>
+                            <img id="photo" src="" class="form-control" style="display: block; width: 50px;height: 50px;">
+                            <input type="file" name="picAdd" id="picAdd" onchange="preview(this.id,'photo');" class="form-control" accept="image/jpeg image/png image/jpg image/gif">
+                       </form>
+                    </div>
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                        <button form="addCourse" type="submit" class="btn btn-primary">创建</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <% for (Course course:newCourses) {%>
@@ -68,6 +106,5 @@
         <%}%>
     </div>
 </div>
-
 </body>
 </html>

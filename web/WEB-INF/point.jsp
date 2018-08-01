@@ -31,6 +31,7 @@
 <html>
 <head>
     <title>To Learn</title>
+    <script src="../js/preview.js"></script>
 </head>
 <body>
 <div class="container" style="padding: 10px;">
@@ -46,17 +47,30 @@
             </div>
             <%}%>
         </div>
+
         <div class="col-8">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <%Point point = points.%>
-                    <li class="breadcrumb-item"><a href="#">计算机网络</a></li>
-                    <li class="breadcrumb-item"><a href="#">路由器</a></li>
+                    <li class="breadcrumb-item"><a href="#"></a></li>
+                    <li class="breadcrumb-item"><a href="#">第一节</a></li>
                 </ol>
             </nav>
-            <video style="width: 100%; margin-top: 20px;" src="res/video/1531677955147.mp4" controls="controls">
+            <form method="post" action="addPointVideo" enctype="multipart/form-data">
+                <div class="form-group">
+                    <button id="video_chooser" type="button" class="btn btn-primary">选择视频</button>
+
+                    <button id="upload" type="submit" class="btn btn-primary">上传</button>
+
+                    <input name="pointId" value="27" hidden="">
+                    <input id="uploade_video" accept="video/mp4" type="file" name="video" hidden="">
+                </div>
+            </form>
+            <video style="width: 100%; margin-top: 20px;" src="<%=%>" controls="controls">
                 您的浏览器不支持 video 标签。
             </video>
+
+
+
         </div>
 
     </div>

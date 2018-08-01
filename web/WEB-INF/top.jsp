@@ -47,7 +47,7 @@
                         out.print("<button type=\"button\" class=\"btn btn-primary\" style=\"margin-right: 5px;\" data-toggle=\"modal\" data-target=\"#registerModal\" onclick=\"window.location.href=\'register\'\">注册</button>\n");
                         out.print("<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#loginModal\" onclick=\"window.location.href=\'login\'\">登录</button>\n");
                     }else {
-                        out.print("<p>Hello,<a href='myspace?state=1'>"+user.getUserName()+"</a>,Welcome to <em>To Learn<em>!<a href=logout></a></p>");
+                        out.print("<p>Hello,<a href='myspace?state=1'>"+user.getUserName()+"</a>,Welcome to <em>To Learn<em>!<a href=logout>   登出  </a></p>");
                     }
                 %>
             </div>

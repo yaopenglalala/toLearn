@@ -10,7 +10,7 @@
     <div class="col-lg-3"></div>
     <div class="col-lg-6 card">
         <div class="card-header">注册</div>
-        <form class="card-body" method="post" action="login.jsp" onsubmit="return signupCheck();">
+        <form class="card-body" method="post" action="register" onsubmit="return signupCheck();">
             <div class="form-group">
                 <label>昵称：</label>
                 <input class="form-control" type="text" id="register-name" name="name" placeholder="请输入用户名 例：master" onblur="checkname()">

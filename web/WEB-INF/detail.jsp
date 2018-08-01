@@ -44,13 +44,37 @@
                 <% for (Chapter chapter:chapters){ %>
                     <div class="card-header" id="heading37">
                         <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse37" aria-expanded="false" aria-controls="collapse37">
-                                <%=chapter.getChapterName()%>
-                            </button>
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse37" aria-expanded="false" aria-controls="collapse37"><%=chapter.getChapterName()%></button>
                             <% if (course.getUserId().equals(user.getUserId())){%>
-                            <button id="addPointButton38" chapterid="38" class="btn btn-link addPointButton" style="float: right;" data-toggle="modal" data-target="#addPointModal">
-                                添加知识点
-                            </button>
+                            <button id="addPointButton38" chapterid="38" class="btn btn-link addPointButton" style="float: right;" data-toggle="modal" data-target="#addPointModal">添加知识点</button>
+                            <div class="modal fade" id="addPointModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addPointModalLongTitle">添加新知识点</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="addPoint" method="post" id="addPointForm">
+                                                <div class="form-group row">
+                                                    <label for="PointDescription" class="col-lg-3 col-form-label">知识点名称</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="text" class="form-control" name="point" id="PointDescription">
+                                                        <input id="chapterId" name="chapterid" style="display: none" value="<%=chapter.getChapterId()%>">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                            <button form="addPointForm" type="submit" class="btn btn-primary">创建</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <%}%>
                         </h5>
                     </div>
@@ -72,6 +96,33 @@
         <div class="col-4">
             <% if (course.getUserId().equals(user.getUserId())){%>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal"> 添加章节 </button>
+            <div class="modal fade" id="addChapterModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="openCourseModalLabel">章节详情</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="addChapter" enctype="multipart/form-data" id="addChapterForm">
+                                <div class="form-group" style="display: none">
+                                    <label for="courseID" class="col-form-label">课程ID:</label>
+                                    <input name="courseid" type="text" class="form-control" id="courseID" value="<%=course.getCourseId()%>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chapter" class="col-form-label">章节名称:</label>
+                                    <textarea name="chapter" class="form-control" id="chapter"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            <button form="addChapterForm" type="submit" class="btn btn-primary">添加</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <%}%>
         </div>
     </div>
