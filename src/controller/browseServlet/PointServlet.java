@@ -49,7 +49,8 @@ public class PointServlet extends HttpServlet {
         //是否登录
         if (user == null) resp.sendRedirect("/login");
         //是否选课
-        else if (!selectionRecordService.checkSelection(user.getUserId(), course.getCourseId())){
+        else if (!selectionRecordService.checkSelection(user.getUserId(), course.getCourseId())
+                && !course.getUserId().equals(user.getUserId())){
             resp.sendRedirect("/detail?courseid=" + course.getCourseId());
         } else {
             //得到页面所需的内容

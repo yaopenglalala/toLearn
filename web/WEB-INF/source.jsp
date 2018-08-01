@@ -20,23 +20,34 @@
     <title>Source</title>
 </head>
 <body>
-
+<a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a>
+<br>
 <%
     if (sources != null) {
         for (String source : sources) {
+            String name = source.substring(source.lastIndexOf("/") + 1);
 %>
-<a href="<%= source%>" download="<%= source.substring(source.lastIndexOf("/"))%>"></a>
+<a href="<%= source%>" download="<%= name%>"><%= name%></a>
 <%
     if (course.getUserId().equals(user.getUserId())) {
 %>
 <form action="/remove" method="post">
-    <input type="text" name="src" value="<%= source%>">
+    <input type="text" name="src" value="<%= source%>" hidden>
     <input type="submit" value="remove"/>
 </form>
+<br>
+<br>
 <%
             }
         }
-    }
-%>
+    } %>
+
+<%  if (course.getUserId().equals(user.getUserId())) { %>
+<form action="/addSource" enctype="multipart/form-data" method="post">
+    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+    <input type="file" name="file">
+    <input type="submit" value="upload"/>
+</form>
+    <% } %>
 </body>
 </html>

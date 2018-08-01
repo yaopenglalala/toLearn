@@ -33,44 +33,30 @@
 <a href="/detail?courseid=<%=course.getCourseId()%>>"></a>
 <h1><%=task.getTaskName()%></h1>
 <p><%= task.getTaskDetail()%></p>
-<%
-    if (isTeacher){
-        %>
-<form action="/modifyTask" method="post">
-   modify name<input type="text" name="name" />
-   modify detail<input type="text" name="detail"/>
-    <input type="submit" value="modify task">
+<% if (isTeacher){ %>
+<form action="/modifyTask" method="post" id="taskForm">
+    <input type="text" name="taskid" value="<%= task.getTaskId()%>" hidden/>
+    Task name : <input type="text" name="name" value="<%= task.getTaskName()%>"/>
+    Task detail : <textarea name="detail" form="taskForm"><%= task.getTaskDetail()%></textarea>
+    <input type="submit" value="Edit this task"/>
 </form>
-<% } %>
+<% } else { %>
 <br>
 <p>Your answer:</p>
-<%
-    if (answer == null){
-        %>
+    <% if (answer == null){ %>
 <form action="/addAnswer" method="post" id="addForm">
     <input type="text" name="taskid" value="<%= task.getTaskId()%>" hidden/>
     <textarea name="answer" form="addForm"></textarea>
     <input type="submit" value="submit">
 </form>
-<%
-    } else if (!course.getUserId().equals(user.getUserId())){
-        %>
+<% } else {%>
 <form action="/modifyAnswer" method="post" id="editForm">
     <input type="text" name="taskid" value="<%= task.getTaskId()%>" hidden />
     <textarea name="answer" form="editForm"><%= answer.getAnswerContent()%> </textarea>
     <input type="submit" value="Edit">
 </form>
-<%
-    } else {
-        %>
-<form action="/modifyTask" method="post" id="taskForm">
-    <input type="text" name="taskid" value="<%= answer.getAnswerContent()%>" hidden/>
-    Task name : <input type="text" name="name" value="<%= task.getTaskName()%>"/>
-    Task detail : <textarea name="detail" form="taskForm"><%= task.getTaskDetail()%></textarea>
-    <input type="submit" value="Edit this task"/>
-</form>
-<%
-    }
-%>
+<% }
+}%>
+
 </body>
 </html>
