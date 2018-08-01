@@ -22,7 +22,7 @@ import java.util.List;
 
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
-    private static final int numberPerPage = 5;
+    private static final int numberPerPage = 6;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,9 +47,9 @@ public class SearchServlet extends HttpServlet {
         String order = req.getParameter("order");
         String pageString = req.getParameter("page");
 
+        //未输入页面信息
         if (pageString == null || pageString.equals("")) {
-            resp.sendRedirect("/home");
-            return;
+            pageString = "1";
         }
 
         List<Course> courses = getCourses(courseName, introduction, teacher);
@@ -75,7 +75,13 @@ public class SearchServlet extends HttpServlet {
 
         result = courses.subList(start, end);
 
+        Integer tag = courses.size() % numberPerPage == 0 ? 0 : 1;
+        Integer numberOfPage = courses.size() / numberPerPage + tag;
+
         req.setAttribute("courses", result);
+        //总页数
+        req.setAttribute("numberOfPage", numberOfPage);
+
         RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/search.jsp");
         dispatcher.forward(req, resp);
     }
@@ -113,7 +119,13 @@ public class SearchServlet extends HttpServlet {
             }
         }
 
-        //Get all course
+
+        //Get all courses
+        if (courseName == null && introduction == null && teacher == null){
+            return courseService.getAllCourses();
+        }
+
+        //Get total course
         List<Course> courses = new ArrayList<>();
         if(nameCourseList != null) courses.addAll(nameCourseList);
         if (introCourseList != null) courses.addAll(introCourseList);

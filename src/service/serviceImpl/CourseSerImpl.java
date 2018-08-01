@@ -64,6 +64,11 @@ public class CourseSerImpl implements CourseService {
         return courseDao.getNewCourses(num);
     }
 
+    @Override
+    public List<Course> getAllCourses() {
+        return courseDao.getAllCourses();
+    }
+
     //搜索
     @Override
     public List<Course> searchCoursesByName(String name) {

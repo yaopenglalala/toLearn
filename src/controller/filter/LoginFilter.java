@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/detail","/myspace","/point","/source",
             "/task","/answer", "/addChapter","/addCourse", "/addPoint",
             "/addPointVideo", "/addRecord", "/addSource","/addTask",
-            "/ModifyPoint", "/remove"})
+            "/ModifyPoint", "/remove", })
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
