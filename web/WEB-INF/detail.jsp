@@ -137,8 +137,8 @@
             <%
                 }else {
             %>
-            <button type="button" class="btn btn-primary" href="source?courseid=<%= course.getCourseId()%>"> 资源 </button>
-            <button type="button" class="btn btn-primary" href="task?courseid=<%= course.getCourseId()%>"> 作业 </button>
+            <a type="button" class="btn btn-primary" style="margin: 5px" href="source?courseid=<%= course.getCourseId()%>"> 资源 </a>
+            <a type="button" class="btn btn-primary" style="margin: 5px" href="task?courseid=<%= course.getCourseId()%>"> 作业 </a>
             <%
                     if (course.getUserId().equals(user.getUserId())){
             %>

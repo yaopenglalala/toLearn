@@ -27,10 +27,14 @@
 <div class="container">
     <h3><span class="badge badge-secondary"><%=course.getCourseName()%></span></h3>
 
+
     <div class="row">
 
     </div>
 </div>
+
+
+
 <h1><a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a></h1>
 <ul><%
     if (tasks != null) {
