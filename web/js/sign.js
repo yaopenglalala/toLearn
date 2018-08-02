@@ -143,3 +143,13 @@ function checkcode() {
         return true;
     }
 }
+
+function sendEmail() {
+    var email = document.getElementById("register-email").value;
+    $.ajax({
+            url:"mailConfirm",
+        type:"post",
+        data:{'username':email}
+    });
+    return false;
+}

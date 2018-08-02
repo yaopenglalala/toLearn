@@ -148,7 +148,7 @@
             %>
             <form action="removeRecord" method="post">
                 <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
-                <input type="submit" value="退课"/>
+                <button type="submit" class="btn btn-primary"> 退课 </button>
             </form>
             <%
                     }

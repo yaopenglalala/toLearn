@@ -16,14 +16,14 @@
             </div>
             <div class="modal-body">
                 <p>验证码将被发送至:</p>
-                <form method="post" action="mailConfirm" id="coding">
+                <form method="post" action="mailConfirm" class="coding">
                     <input type="text" readonly="readonly" name="username" value="" id="codeMail">
                 </form>
                 <p>请注意查收</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary" form="coding">确认</button>
+                <button type="submit" class="btn btn-primary" id="coding" onclick="return sendEmail()">确认</button>
             </div>
         </div>
     </div>

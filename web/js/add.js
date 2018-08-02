@@ -5,3 +5,4 @@ function addPoint(chapterid){
 function codeEmail() {
     document.getElementById("codeMail").value=document.getElementById("register-email").value;
 }
+
