@@ -83,7 +83,9 @@ public class ControllerUtil {
             if (!path.endsWith(File.separator)) {
                 path += File.separator;
             }
+            System.out.println("name " + fileName);
             File uploadFile = new File(RESPATH + path + fileName);
+            System.out.println("upload "+uploadFile.getPath());
             item.write(uploadFile);
         } catch (Exception e) {
             e.printStackTrace();

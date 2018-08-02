@@ -13,7 +13,8 @@ import java.io.IOException;
 public class RemoveSource extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String path = req.getParameter("src");
+        String path = new String(req.getParameter("src").getBytes("ISO8859-1"),"UTF-8");
+        System.out.println(path);
         ControllerUtil.removeFileByPath(path);
         resp.sendRedirect("/myspace?type=open");
     }

@@ -37,17 +37,4 @@ public class Point implements Serializable {
         this.pointName = pointName;
     }
 
-    public List<String> getVideoPathes(){
-        List<String> rs = new ArrayList<>();
-        String pointVideoPath = VIDEOPATH + pointId + "/";
-        if (ControllerUtil.checkFileExist(pointVideoPath)){
-            File dir = new File(pointVideoPath);
-            if (dir.isDirectory()){
-                for (String fileName : dir.list()){
-                    rs.add(pointVideoPath + fileName);
-                }
-            }
-        }
-        return rs;
-    }
 }

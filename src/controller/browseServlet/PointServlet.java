@@ -1,5 +1,6 @@
 package controller.browseServlet;
 
+import controller.ControllerUtil;
 import model.Chapter;
 import model.Course;
 import model.Point;
@@ -17,7 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +64,15 @@ public class PointServlet extends HttpServlet {
                 List<Point> pointList = pointService.getPoints(chapterId);
                 points.put(chapterId, pointList);
             }
-            List<String> videos = point.getVideoPathes();
+
+            String videoPath = "res/video/"+ point.getPointId() + "/";
+            List<String> videos = new ArrayList<>();
+            File[] files = ControllerUtil.getFilesByPath(videoPath);
+            if (files != null && files.length > 0){
+                for (File file : files){
+                    videos.add(videoPath + file.getName());
+                }
+            }
 
             req.setAttribute("course",course);
             req.setAttribute("chapter", chapter);
@@ -69,6 +80,8 @@ public class PointServlet extends HttpServlet {
             req.setAttribute("chapters", chapters);
             req.setAttribute("points", points);
             req.setAttribute("videos", videos);
+
+//            System.out.println(videos);
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/point.jsp");
             requestDispatcher.forward(req, resp);

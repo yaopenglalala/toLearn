@@ -31,13 +31,25 @@ public class AddPointVideo extends HttpServlet {
 
         try{
             List<FileItem> fileItems = upload.parseRequest(req);
-            Integer pointId = Integer.parseInt(req.getParameter("pointid"));
+            Integer pointId = null;
+
+            //Get point id
+            for (FileItem fileItem : fileItems){
+                if (fileItem.isFormField()){
+                    switch (fileItem.getFieldName()) {
+                        case "pointid":
+                            pointId = Integer.parseInt(fileItem.getString("utf8"));
+                            break;
+                    }
+                }
+            }
 
             for (FileItem fileItem : fileItems){
                 if (!fileItem.isFormField()){
                     ControllerUtil.upLoadFile(fileItem, "res/video/" + pointId + "/" , false);
                 }
             }
+
             resp.sendRedirect("/point?pointid="+pointId);
         }catch (Exception e){
             e.printStackTrace();

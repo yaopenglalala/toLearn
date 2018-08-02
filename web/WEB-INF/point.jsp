@@ -50,8 +50,8 @@
             <%for(Chapter chapter1:chapters){%>
             <div class="list-group" style="margin-top: 10px;">
                 <a href="#" class="list-group-item list-group-item-action active"><%=chapter.getChapterName()%></a>
-                <% for(Point point1:points.get(chapter.getChapterId())){%>
-                <a href="point?pointId=<%=point.getPointId()%>" class="list-group-item list-group-item-action"><%=point.getPointName()%></a>
+                <% for(Point point1 : points.get(chapter1.getChapterId())){%>
+                <a href="point?pointid=<%=point1.getPointId()%>" class="list-group-item list-group-item-action"><%=point1.getPointName()%></a>
                 <%}%>
             </div>
             <%}%>
@@ -66,19 +66,29 @@
             </nav>
             <form method="post" action="addPointVideo" enctype="multipart/form-data">
                 <div class="form-group">
+                    <input type="file" name="file">
                     <button id="video_chooser" type="button" class="btn btn-primary">选择视频</button>
 
                     <button id="upload" type="submit" class="btn btn-primary">上传</button>
 
-                    <input name="pointId" value="27" hidden="">
-                    <input id="uploade_video" accept="video/mp4" type="file" name="video" hidden="">
+                    <input name="pointid" value="<%= point.getPointId()%>" hidden>
+                    <%--<input id="upload_video" accept="video/mp4" type="file" name="video" hidden="">--%>
                 </div>
             </form>
-            <video style="width: 100%; margin-top: 20px;" src="<%=%>" controls="controls">
+            <% if(videos != null) {
+                for (String video : videos){ %>
+            <video style="width: 100%; margin-top: 20px;" src="<%= video%>" controls="controls">
                 您的浏览器不支持 video 标签。
             </video>
-
-
+                <% if (course.getUserId().equals(user.getUserId())) { %>
+                    <form action="/remove" method="post">
+                        <input type="text" name="src" value="<%= video%>" hidden>
+                        <input type="submit" value="remove"/>
+                    </form>
+                    <% }
+                }
+            %>
+            <% }%>
 
         </div>
 
