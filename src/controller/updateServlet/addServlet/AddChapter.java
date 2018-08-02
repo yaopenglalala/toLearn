@@ -19,6 +19,7 @@ public class AddChapter extends HttpServlet {
         ChapterService chapterService = new ChapterSerImpl();
 
         String courseIdString = req.getParameter("courseid");
+        System.out.println(req.getParameter("chapter"));
         String chapterString = new String(req.getParameter("chapter").getBytes("ISO8859-1"),"UTF-8");
 
         if (courseIdString != null){

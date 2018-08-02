@@ -36,7 +36,8 @@
     Boolean isTeacher = course.getUserId().equals(user.getUserId());
 %>
 <%-----------%>
-<% String pointId = request.getParameter("pointId");%>
+<%
+%>
 <html>
 <head>
     <title>To Learn</title>
@@ -60,8 +61,8 @@
         <div class="col-8">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"></a></li>
-                    <li class="breadcrumb-item"><a href="#">第一节</a></li>
+                    <li class="breadcrumb-item"><a href="#"><%=chapter.getChapterName()%></a></li>
+                    <li class="breadcrumb-item"><a href="#"><%=point.getPointName()%></a></li>
                 </ol>
             </nav>
             <% if (isTeacher) { %>
@@ -69,7 +70,6 @@
                 <div class="form-group">
                     <input type="file" name="file">
                     <button id="video_chooser" type="button" class="btn btn-primary">选择视频</button>
-
                     <button id="upload" type="submit" class="btn btn-primary">上传</button>
 
                     <input name="pointid" value="<%= point.getPointId()%>" hidden>
@@ -91,11 +91,8 @@
                 }
             %>
             <% }%>
-
         </div>
-
     </div>
-
 </div>
 
 </body>

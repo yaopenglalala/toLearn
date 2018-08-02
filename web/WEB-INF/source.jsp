@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+<%@ page import="java.util.List" %><%--
+=======
 <%@ page import="java.util.List" %>
 <%@ page import="model.Course" %><%--
+>>>>>>> f75d026159b9fd2f1a15f38c39876b28e4dd8939
   Created by IntelliJ IDEA.
   User: 妖风
   Date: 2018/7/31

@@ -66,7 +66,7 @@
                 <%--<div class="tips"> </div>--%>
             <%--</div>--%>
             <%--<div class="card-footer">--%>
-                <button type="button" class="btn btn-primary float-le" name="goIn" onclick="goin()">去登陆</button>
+                <button type="button" class="btn btn-primary float-le" name="goIn" href="login">去登陆</button>
                 <button type="submit" class="btn btn-primary float-right" id="bt-register">注册</button>
             </div>
         </form>
