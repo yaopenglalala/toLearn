@@ -64,6 +64,7 @@
                     <li class="breadcrumb-item"><a href="#">第一节</a></li>
                 </ol>
             </nav>
+            <% if (isTeacher) { %>
             <form method="post" action="addPointVideo" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="file" name="file">
@@ -75,6 +76,7 @@
                     <%--<input id="upload_video" accept="video/mp4" type="file" name="video" hidden="">--%>
                 </div>
             </form>
+            <% } %>
             <% if(videos != null) {
                 for (String video : videos){ %>
             <video style="width: 100%; margin-top: 20px;" src="<%= video%>" controls="controls">
