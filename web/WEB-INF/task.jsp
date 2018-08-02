@@ -24,73 +24,23 @@
 </head>
 <body>
 
-<div class="modal" tabindex="-1" role="dialog" id="myModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">添加作业</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="addTask" method="post" id="addTaskForm" class="card-body">
-                    <div class="form-group">
-                        <label>课程ID</label>
-                        <input type="text" name="courseid" value="<%= course.getCourseId()%>" readonly="readonly" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>作业名称</label>
-                        <input type="text" name="name" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label>作业详情</label>
-                        <input type="text" name="detail" class="form-group"/>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary" form="addTaskForm">确定</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container">
-    <a href="detail?courseid=<%= course.getCourseId()%>"><h3><span class="badge badge-secondary"><%=course.getCourseName()%></span></h3></a>
-    <%
-        if (course.getUserId().equals(user.getUserId())) {
-    %>
-    <button href="search" class="btn btn-primary">添加作业</button>
-    <%
-        }
-    %>
+    <h3><span class="badge badge-secondary"><%=course.getCourseName()%></span></h3>
+
+
     <div class="row">
-        <%
-            if (tasks != null){
-                for (Task task : tasks) {
-         %>
-        <div >
-
-        </div>
-
-        <%
-                }
-            }
-        %>
-
 
     </div>
 </div>
 
-<h1><a href="detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a></h1>
-<ul>
-    <%
+
+
+<h1><a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a></h1>
+<ul><%
     if (tasks != null) {
         for (Task task : tasks) {
 %>
-    <li><a href="answer?taskid=<%= task.getTaskId()%>"><%= task.getTaskName()%></a></li>
+    <li><a href="/answer?taskid=<%= task.getTaskId()%>"><%= task.getTaskName()%></a></li>
     <%
             }
         }
@@ -98,7 +48,7 @@
 <br>
 <% if (course.getUserId().equals(user.getUserId())) {
 %>
-<form action="addTask" method="post">
+<form action="/addTask" method="post">
     <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden>
     Task name:<input type="text" name="name"/><br>
     Task detail:<input type="text" name="detail"/><br>
