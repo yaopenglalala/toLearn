@@ -31,16 +31,16 @@ public class Register extends HttpServlet {
 
         System.out.println("username" + userName);
 
-//        if (inputCode.equals("")){
-//            req.setAttribute("err", "You should input verification Code!");
-//            doGet(req, resp);
-//        } else
+        if (inputCode.equals("")){
+            req.setAttribute("err", "You should input verification Code!");
+            doGet(req, resp);
+        } else
         if (userName.equals("")){
             req.setAttribute("err", "Invalid user name");
             doGet(req, resp);
-//        } else if (!inputCode.equals(expectedCode.toString())) {
-//            req.setAttribute("err", "Wrong verification Code!");
-//            doGet(req, resp);
+        } else if (!inputCode.equals(expectedCode.toString())) {
+            req.setAttribute("err", "Wrong verification Code!");
+            doGet(req, resp);
         } else if (userService.getUserByName(userName) != null) {
             req.setAttribute("err", "This user exists!");
             doGet(req, resp);
