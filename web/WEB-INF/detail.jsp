@@ -45,7 +45,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="addChapter" enctype="multipart/form-data" id="addChapterForm">
+                <form method="post" action="addChapter" id="addChapterForm">
                     <div class="form-group">
                         <label for="courseID" class="col-form-label">课程ID:</label>
                         <input name="courseid" type="text" class="form-control" id="courseID" value="<%=course.getCourseId()%>" readonly="readonly">
@@ -111,7 +111,7 @@
                             <%}%>
                         </h5>
                     </div>
-                    <div id="collapse37" class="collapse" aria-labelledby="heading37" data-parent="#accordion" style="">
+                    <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordion" style="">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <!-- 对章节知识点循环 -->
@@ -128,7 +128,7 @@
         <div class="col-2"> </div>
         <div class="col-4">
             <% if (course.getUserId().equals(user.getUserId())){%>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal" onclick="addChapter(<%=course.getCourseId()%>)"> 添加章节 </button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal"> 添加章节 </button>
             <%}%>
         </div>
     </div>

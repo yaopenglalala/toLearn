@@ -65,6 +65,7 @@
                     <li class="breadcrumb-item"><a href="#"><%=point.getPointName()%></a></li>
                 </ol>
             </nav>
+            <% if(isTeacher){ %>
             <form method="post" action="addPointVideo" enctype="multipart/form-data">
                 <div class="form-group">
                     <input type="file" name="file">
@@ -89,11 +90,8 @@
                 }
             %>
             <% }%>
-
         </div>
-
     </div>
-
 </div>
 
 </body>
