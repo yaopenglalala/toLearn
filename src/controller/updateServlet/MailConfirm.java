@@ -17,7 +17,7 @@ public class MailConfirm extends HttpServlet {
     private static final String HOST = "smtp.qq.com";
     private static final String MYPASS = "gdxsnhszgklvbebc";
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("username");
 
         Properties properties = System.getProperties();
