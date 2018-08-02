@@ -22,8 +22,8 @@ public class ModifyTask extends HttpServlet {
         String taskIdString = req.getParameter("taskid");
         try{
             Integer taskId = Integer.parseInt(taskIdString);
-            String taskName = req.getParameter("name");
-            String taskDetail = req.getParameter("detail");
+            String taskName = new String(req.getParameter("name").getBytes("ISO8859-1"),"UTF-8");
+            String taskDetail = new String(req.getParameter("detail").getBytes("ISO8859-1"),"UTF-8");
 
             TaskService taskService = new TaskSerImpl();
 

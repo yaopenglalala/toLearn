@@ -1,8 +1,11 @@
 package controller.browseServlet;
 
 import controller.ControllerUtil;
+import model.Course;
 import model.User;
+import service.CourseService;
 import service.SelectionRecordService;
+import service.serviceImpl.CourseSerImpl;
 import service.serviceImpl.SelectionRecordSerImpl;
 
 import javax.servlet.RequestDispatcher;
@@ -26,20 +29,25 @@ public class SourceServlet extends HttpServlet{
         try {
             User user = (User) req.getSession().getAttribute("user");
             Integer courseId = Integer.parseInt(courseIdString);
+
+            CourseService courseService = new CourseSerImpl();
+            Course course = courseService.getCourseByCourseId(courseId);
             //是否登录
             if (user == null) resp.sendRedirect("/login");
             //是否选课
-            else if (!recordService.checkSelection(user.getUserId(), courseId)){
+            else if (!recordService.checkSelection(user.getUserId(), courseId)
+                    && !course.getUserId().equals(user.getUserId())){
                 resp.sendRedirect("/detail?courseid=" + courseId);
             } else {
                 String materialPath = "res/material/"+courseId+ "/";
                 List<String> materials = new ArrayList<>();
                 File[] files = ControllerUtil.getFilesByPath(materialPath);
-                if (files.length > 0){
+                if (files != null && files.length > 0){
                     for (File file : files){
                         materials.add(materialPath + file.getName());
                     }
                 }
+                req.setAttribute("course", course);
                 req.setAttribute("sources", materials);
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/source.jsp");
                 requestDispatcher.forward(req, resp);

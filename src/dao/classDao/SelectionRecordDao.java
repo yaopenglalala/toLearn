@@ -79,7 +79,7 @@ public class SelectionRecordDao extends JdbcDaoImpl<SelectionRecord> {
         List<Map<String, Object>> list = getMap(connection, sql, courseId);
         if (list == null || list.isEmpty()) {
             return 0;
-        } else return (Integer) list.get(0).get("number");
+        } else return ((Long) list.get(0).get("number")).intValue();
     }
 
     private static void init() {

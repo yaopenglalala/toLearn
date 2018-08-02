@@ -19,9 +19,12 @@ public class ControllerUtil {
 
     public static File[] getFilesByPath(String filePath) {
         File file = new File(RESPATH + filePath);
-        if (file.isDirectory()) {
+        if (file.exists() && file.isDirectory()) {
             return file.listFiles();
-        } else return new File[]{file};
+        } else if (file.exists()) return new File[]{file};
+        else {
+            return null;
+        }
     }
 
     public static boolean removeFileByPath(String filePath) {

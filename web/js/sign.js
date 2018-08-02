@@ -125,40 +125,6 @@ function fillEmail() {
 }
 
 
-//
-// function checkphone(){
-//   var phone = document.getElementById("register-phone").value;
-//   var tip = document.getElementsByClassName('tips')[4];
-//   if (phone === "") {
-//     tip.innerHTML = "请输入电话号码";
-//     return false;
-//   }
-//   else if (phone !== "") {
-//     var patten = /^[0-9]{3}-[0-9]{8}$/;;
-//     var validity = patten.test(phone);
-//     if (!validity) {
-//       tip.innerHTML = "请输入合法电话号码";
-//       return false;
-//     }
-//   else {
-//     tip.innerHTML = "";
-//     return true;
-//   }
-// }
-// }
-// function checkaddress(){
-//   var adddress = document.getElementById("register-address").value;
-//   var tip = document.getElementsByClassName('tips')[5];
-//   if (adddress === "") {
-//     tip.innerHTML = "请输入地址";
-//     return false;
-//   }
-//   else {
-//     tip.innerHTML = "";
-//     return true;
-//   }
-// }
-
 function incheck(){
   var username = document.getElementById("user-name").value;
   var psw = document.getElementById("user-psw").value;

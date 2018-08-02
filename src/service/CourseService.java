@@ -29,6 +29,9 @@ public interface CourseService {
     //得到最新课程
     List<Course> getNewCourses(int num);
 
+    //得到所有课程
+    List<Course> getAllCourses();
+
     //搜索
     List<Course> searchCoursesByName(String name);
     List<Course> searchCoursesByIntro(String introduction);
