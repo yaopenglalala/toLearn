@@ -21,7 +21,7 @@ public class ModifyAnswer extends HttpServlet {
         String taskIdString = req.getParameter("taskid");
         try{
             Integer taskId = Integer.parseInt(taskIdString);
-            String answerString = req.getParameter("answer");
+            String answerString = new String(req.getParameter("answer").getBytes("ISO8859-1"),"UTF-8");
 
             AnswerService answerService = new AnswerSerImpl();
 

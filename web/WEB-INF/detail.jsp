@@ -3,6 +3,7 @@
 <%@ page import="model.Chapter" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="model.Point" %>
+<%@ page import="com.sun.org.apache.xpath.internal.operations.Bool" %>
 <%--
   Created by IntelliJ IDEA.
   User: 妖风
@@ -21,6 +22,9 @@
 
     //章节对应的知识点，以<Integer, List<Point>>存储，即章节id对应知识点列表
     Map<Integer, List<Point>> points = (Map<Integer, List<Point>>) request.getAttribute("points");
+
+    //是否是选课学生
+    Boolean isStudent = (Boolean) request.getAttribute("isStudent");
 %>
 <%-----------%>
 <%@ include file="top.jsp"%>
@@ -102,8 +106,8 @@
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <!-- 对章节知识点循环 -->
-                                <% for (Point point:points.get(course.getCourseId())){%>
-                                <li class="list-group-item list-group-item-action"><a href="point?pointId=<%=point.getPointId()%>"><%=point.getPointName()%></a></li>
+                                <% for (Point point:points.get(chapter.getChapterId())){%>
+                                <li class="list-group-item list-group-item-action"><a href="point?pointid=<%=point.getPointId()%>"><%=point.getPointName()%></a></li>
                                 <%}%>
                             </ul>
                         </div>
@@ -147,8 +151,32 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+=======
+<%
+    if (!isStudent && !course.getUserId().equals(user.getUserId())){
+        %>
+<form action="/addRecord" method="post">
+    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+    <input type="submit" value="Select it!"/>
+</form>
+<%
+    } else {
+        %>
+<a href="/source?courseid=<%= course.getCourseId()%>">Source</a><br>
+<a href="/task?courseid=<%= course.getCourseId()%>">Tasks</a><br>
+<%      if (!course.getUserId().equals(user.getUserId())){ %>
+<form action="/removeRecord" method="post">
+    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+    <input type="submit" value="Quit class."/>
+</form>
+<%      }
+    }
+%>
+
+>>>>>>> f75d026159b9fd2f1a15f38c39876b28e4dd8939
 </body>
 </html>

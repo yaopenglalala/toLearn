@@ -11,6 +11,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="top.jsp"%>
 <%-----------%>
 <%
     //这个页面对应的课程
@@ -21,9 +22,6 @@
 
     //这个页面对应的知识点
     Point point = (Point) request.getAttribute("point");
-
-    //用户
-    User user = (User) request.getAttribute("user");
 
     //章节列表
     List<Chapter> chapters = (List<Chapter>) request.getAttribute("chapters");
@@ -38,7 +36,6 @@
     Boolean isTeacher = course.getUserId().equals(user.getUserId());
 %>
 <%-----------%>
-<%@ include file="top.jsp"%>
 <% String pointId = request.getParameter("pointId");%>
 <html>
 <head>
@@ -50,10 +47,10 @@
 
     <div class="row" style="margin-top: 10px;">
         <div class="col-4">
-            <%for(Chapter chapter:chapters){%>
+            <%for(Chapter chapter1:chapters){%>
             <div class="list-group" style="margin-top: 10px;">
                 <a href="#" class="list-group-item list-group-item-action active"><%=chapter.getChapterName()%></a>
-                <% for(Point point:points.get(chapter.getChapterId())){%>
+                <% for(Point point1:points.get(chapter.getChapterId())){%>
                 <a href="point?pointId=<%=point.getPointId()%>" class="list-group-item list-group-item-action"><%=point.getPointName()%></a>
                 <%}%>
             </div>

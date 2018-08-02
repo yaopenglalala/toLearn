@@ -22,9 +22,9 @@ public class AddPoint extends HttpServlet {
         ChapterService chapterService = new ChapterSerImpl();
 
         String chapterIdString = req.getParameter("chapterid");
-        String pointString = req.getParameter("point");
+        String pointString = new String(req.getParameter("point").getBytes("ISO8859-1"),"UTF-8");
 
-        if (chapterIdString != null && pointString != null){
+        if (chapterIdString != null){
             if (!chapterIdString.trim().equals("") && !pointString.trim().equals("")){
                 Point point = new Point();
                 point.setChapterId(Integer.parseInt(chapterIdString));

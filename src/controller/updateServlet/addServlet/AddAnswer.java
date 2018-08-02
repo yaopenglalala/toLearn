@@ -26,11 +26,11 @@ public class AddAnswer extends HttpServlet {
             Answer answer = new Answer();
             answer.setUserId(user.getUserId());
             answer.setTaskId(taskId);
-            answer.setAnswerContent(req.getParameter("answer"));
+            answer.setAnswerContent(new String(req.getParameter("answer").getBytes("ISO8859-1"),"UTF-8"));
 
             AnswerService answerService = new AnswerSerImpl();
 
-            if (answerService.getAnswer(user.getUserId(), taskId) != null) answerService.addAnswer(answer);
+            if (answerService.getAnswer(user.getUserId(), taskId) == null) answerService.addAnswer(answer);
 
         } catch (Exception e){
             e.printStackTrace();

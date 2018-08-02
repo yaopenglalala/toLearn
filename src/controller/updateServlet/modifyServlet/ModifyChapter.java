@@ -20,7 +20,7 @@ public class ModifyChapter extends HttpServlet {
         Integer courseId = 1;
         try{
             Integer chapterId = Integer.parseInt(chapterIdString);
-            String chapterString = req.getParameter("chapter");
+            String chapterString = new String(req.getParameter("chapter").getBytes("ISO8859-1"),"UTF-8");
 
             Chapter chapter = chapterService.getChapter(chapterId);
             chapter.setChapterName(chapterString);

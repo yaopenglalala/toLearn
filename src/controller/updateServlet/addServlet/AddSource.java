@@ -24,13 +24,30 @@ public class AddSource extends HttpServlet {
 
         try{
             List<FileItem> fileItems = upload.parseRequest(req);
-            Integer courseid = Integer.parseInt(req.getParameter("courseid"));
 
+            Integer courseid = null;
+            //Get course id
+            for (FileItem fileItem : fileItems){
+                if (fileItem.isFormField()){
+                    switch (fileItem.getFieldName()) {
+                        case "courseid":
+                            courseid = Integer.parseInt(fileItem.getString("utf8"));
+                            break;
+                    }
+                }
+            }
+
+            if (courseid == null) {
+                resp.sendRedirect("/source?courseid=" + courseid);
+            }
+
+            //Up load file
             for (FileItem fileItem : fileItems){
                 if (!fileItem.isFormField()){
                     ControllerUtil.upLoadFile(fileItem, "res/material/" + courseid + "/" , false);
                 }
             }
+
             resp.sendRedirect("/source?courseid=" + courseid);
         }catch (Exception e){
             e.printStackTrace();

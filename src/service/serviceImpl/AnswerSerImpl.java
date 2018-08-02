@@ -31,8 +31,8 @@ public class AnswerSerImpl implements AnswerService {
     }
 
     @Override
-    public boolean checkAnswered(Integer userId, Integer courseId) {
-        return getAnswer(userId, courseId) != null;
+    public boolean checkAnswered(Integer userId, Integer taskId) {
+        return getAnswer(userId, taskId) != null;
     }
 
     @Override
