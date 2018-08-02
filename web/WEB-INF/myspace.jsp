@@ -45,19 +45,19 @@
                         <input type="text" id="intrdAdd" name="introduction" class="form-control"><br>
                     </div>
                     <div class="form-group">
-                         <label for="picAdd">课程封面</label><br>
+                        <label for="picAdd">课程封面</label><br>
                         <img id="photo" src="" class="form-control" style="display: block; width: 100px;height: 100px;"><br>
                         <input type="file" name="picAdd" id="picAdd" onchange="preview(this.id,'photo');" class="form-control" accept="image/jpeg image/png image/jpg image/gif">
                     </div>
-                </form>
-            </div>
+                </form>            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary" form="addCourse">添加</button>
+                <button type="submit" class="btn btn-primary" form="addCourse">确认</button>
             </div>
         </div>
     </div>
 </div>
+<%--end--%>
 
 <div class="container">
     <ul class="nav nav-tabs" style="margin-top: 10px;">

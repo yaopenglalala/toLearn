@@ -45,11 +45,20 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <form method="post" action="addChapter" enctype="multipart/form-data" id="addChapterForm">
+                    <div class="form-group">
+                        <label for="courseID" class="col-form-label">课程ID:</label>
+                        <input name="courseid" type="text" class="form-control" id="courseID" value="<%=course.getCourseId()%>" readonly="readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="chapter" class="col-form-label">章节名称:</label>
+                        <input name="chapter" type="text" class="form-control" id="chapter">
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">添加</button>
+                <button type="submit" class="btn btn-primary" form="addChapterForm">添加</button>
             </div>
         </div>
     </div>
@@ -67,19 +76,19 @@
             </div>
             <div class="modal-body">
                 <form action="addPoint" method="post" id="addPointForm" class="card-body">
+                    <div class="form-group">
+                        <label>章节ID</label>
+                        <input id="chapterIdId" type="text" class="form-control" name="chapterid" readonly="readonly">
+                    </div>
                     <div class="form-group row">
-                        <label for="PointDescription" class="col-lg-3 col-form-label">知识点名称</label>
-                        <div class="col-lg-9">
-                            <input type="text" class="form-control" name="point" id="PointDescription">
-                            <input id="chapterId" name="chapterid" style="display: none" value="<%=chapter.getChapterId()%>">
-                        </div>
+                        <label for="PointDescription" class="col-form-label">知识点名称</label>
+                        <input type="text" class="form-control" name="point" id="PointDescription">
                     </div>
                 </form>
-                <p>Modal body text goes here.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">添加</button>
+                <button type="submit" class="btn btn-primary" form="addPointForm">添加</button>
             </div>
         </div>
     </div>
@@ -98,7 +107,7 @@
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse"><%=chapter.getChapterName()%></button>
                             <% if (course.getUserId().equals(user.getUserId())){%>
-                            <button id="addPointButton" class="btn btn-link addPointButton" style="float: right;" data-toggle="modal" data-target="#addPointModal" onclick="">添加知识点</button>
+                            <button id="addPointButton" class="btn btn-link addPointButton" style="float: right;" data-toggle="modal" data-target="#addPointModal" onclick="addPoint(<%=chapter.getChapterId()%>)">添加知识点</button>
                             <%}%>
                         </h5>
                     </div>
@@ -119,64 +128,34 @@
         <div class="col-2"> </div>
         <div class="col-4">
             <% if (course.getUserId().equals(user.getUserId())){%>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal"> 添加章节 </button>
-            <div class="modal fade" id="addChapterModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="openCourseModalLabel">章节详情</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" action="addChapter" enctype="multipart/form-data" id="addChapterForm">
-                                <div class="form-group" style="display: none">
-                                    <label for="courseID" class="col-form-label">课程ID:</label>
-                                    <input name="courseid" type="text" class="form-control" id="courseID" value="<%=course.getCourseId()%>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="chapter" class="col-form-label">章节名称:</label>
-                                    <textarea name="chapter" class="form-control" id="chapter"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                            <button form="addChapterForm" type="submit" class="btn btn-primary">添加</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal" onclick="addChapter(<%=course.getCourseId()%>)"> 添加章节 </button>
             <%}%>
         </div>
     </div>
 </div>
-<<<<<<< HEAD
+<script src="../js/add.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-=======
-<%
-    if (!isStudent && !course.getUserId().equals(user.getUserId())){
-        %>
-<form action="/addRecord" method="post">
-    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
-    <input type="submit" value="Select it!"/>
-</form>
-<%
-    } else {
-        %>
-<a href="/source?courseid=<%= course.getCourseId()%>">Source</a><br>
-<a href="/task?courseid=<%= course.getCourseId()%>">Tasks</a><br>
-<%      if (!course.getUserId().equals(user.getUserId())){ %>
-<form action="/removeRecord" method="post">
-    <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
-    <input type="submit" value="Quit class."/>
-</form>
-<%      }
-    }
-%>
-
->>>>>>> f75d026159b9fd2f1a15f38c39876b28e4dd8939
 </body>
 </html>
+<%--<%--%>
+    <%--if (!isStudent && !course.getUserId().equals(user.getUserId())){--%>
+<%--%>--%>
+<%--<form action="addRecord" method="post">--%>
+    <%--<input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>--%>
+    <%--<input type="submit" value="Select it!"/>--%>
+<%--</form>--%>
+<%--<%--%>
+<%--} else {--%>
+<%--%>--%>
+<%--<a href="/source?courseid=<%= course.getCourseId()%>">Source</a><br>--%>
+<%--<a href="/task?courseid=<%= course.getCourseId()%>">Tasks</a><br>--%>
+<%--<%      if (!course.getUserId().equals(user.getUserId())){ %>--%>
+<%--<form action="/removeRecord" method="post">--%>
+    <%--<input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>--%>
+    <%--<input type="submit" value="Quit class."/>--%>
+<%--</form>--%>
+<%--<%      }--%>
+<%--}--%>
+<%--%>--%>
