@@ -19,6 +19,7 @@ public class MailConfirm extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("username");
+        System.out.println(userName);
 
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", HOST);

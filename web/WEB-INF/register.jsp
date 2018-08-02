@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary" id="coding" onclick="return sendEmail()">确认</button>
+                <button type="button" class="btn btn-primary" id="coding" onclick="return sendEmail()">确认</button>
             </div>
         </div>
     </div>
