@@ -50,9 +50,9 @@
         <div class="col-4">
             <%for(Chapter chapter1:chapters){%>
             <div class="list-group" style="margin-top: 10px;">
-                <a href="#" class="list-group-item list-group-item-action active"><%=chapter.getChapterName()%></a>
+                <a href="#" class="list-group-item list-group-item-action active"><%=chapter1.getChapterName()%></a>
                 <% for(Point point1:points.get(chapter.getChapterId())){%>
-                <a href="point?pointId=<%=point.getPointId()%>" class="list-group-item list-group-item-action"><%=point.getPointName()%></a>
+                <a href="point?pointid=<%=point1.getPointId()%>" class="list-group-item list-group-item-action"><%=point1.getPointName()%></a>
                 <%}%>
             </div>
             <%}%>
@@ -65,6 +65,7 @@
                     <li class="breadcrumb-item"><a href="#"><%=point.getPointName()%></a></li>
                 </ol>
             </nav>
+            <% if(isTeacher){ %>
             <form method="post" action="addPointVideo" enctype="multipart/form-data">
                 <div class="form-group">
                     <button id="video_chooser" type="button" class="btn btn-primary">选择视频</button>
@@ -74,16 +75,12 @@
                     <input id="uploade_video" accept="video/mp4" type="file" name="video" hidden="">
                 </div>
             </form>
+            <%}%>
             <video style="width: 100%; margin-top: 20px;" src="<%=point.getVideoPathes()%>" controls="controls">
                 您的浏览器不支持 video 标签。
             </video>
-
-
-
         </div>
-
     </div>
-
 </div>
 
 </body>

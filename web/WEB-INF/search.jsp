@@ -21,26 +21,45 @@
     <title>Search</title>
 </head>
 <body>
-<%
-    if (courses != null){
-        for (Course course : courses){
-            %>
-<a href="/detail?courseid=<%= course.getCourseId()%>"><%= course.getCourseName()%></a><br>
-<%
-        }
-    } %>
-<ul>
-<%
-    if (pageNumber != 0){
-        for (int i = 1 ; i < pageNumber + 1; i++){
-            String originUrl = "/search?" + request.getQueryString();
-            String newUrl = originUrl.substring(0, originUrl.lastIndexOf("=") + 1) + i;
-            %>
-    <li><a href="<%= newUrl%>"><%= i%></a></li>
-<%
-        }
-    }
-%>
-</ul>
+<div class="container">
+    <div class="row" style="margin-top:10px">
+        <%
+            if (courses != null){
+                for (Course course : courses){
+        %>
+        <div class="col-lg-4" style="margin-top: 10px;">
+            <div class="card">
+                <div class="card-body">
+                    <img style="width: 100%; height: 250px;" src="<%=course.getCourseImage()%>">
+                    <h5 style="margin-top: 10px; text-align: center;" class="card-title"><%=course.getCourseName()%></h5>
+                    <p class="card-text" style="text-align: center;"><%=course.getIntroduction()%></p>
+                    <a href="detail?courseid=<%=course.getCourseId()%>" class="btn btn-primary" style="margin-left: 35%;">查看详情</a>
+                </div>
+            </div>
+        </div>
+        <%     }
+            }  %>
+    </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <%
+            if (pageNumber != 0){
+                for (int i = 1 ; i < pageNumber + 1; i++){
+                    String originUrl = "/search?" + request.getQueryString();
+                    String newUrl = originUrl.substring(0, originUrl.lastIndexOf("=") + 1) + i;
+        %>
+        <li class="page-item"><a class="page-link" href="<%= newUrl%>"><%= i%></a></li>
+        <%      }
+        }%>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
 </body>
 </html>
