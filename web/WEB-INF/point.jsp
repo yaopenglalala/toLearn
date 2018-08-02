@@ -79,9 +79,9 @@
             <% } %>
             <% if(videos != null) {
                 for (String video : videos){ %>
-            <video style="width: 100%; margin-top: 20px;" src="<%= video%>" controls="controls">
-                您的浏览器不支持 video 标签。
-            </video>
+            <iframe style="width: 100%; height: 70%; margin-top: 20px;" src="<%= video%>" controls="controls">
+                您的浏览器不支持 iframe 标签。
+            </iframe>
                 <% if (course.getUserId().equals(user.getUserId())) { %>
                     <form action="/remove" method="post">
                         <input type="text" name="src" value="<%= video%>" hidden>
