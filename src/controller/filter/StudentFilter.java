@@ -29,7 +29,7 @@ public class StudentFilter implements Filter {
         } else {
             try {
                 SelectionRecordService recordService = new SelectionRecordSerImpl();
-                Integer courseId= Integer.parseInt(req.getParameter("courseid"));
+                Integer courseId;
                 String courseIdString = req.getParameter("courseid");
                 String chapterIdString = req.getParameter("chapterid");
                 String pointIdString = req.getParameter("pointid");
@@ -49,6 +49,7 @@ public class StudentFilter implements Filter {
                     courseId = taskService.getTask(Integer.parseInt(taskIdString)).getCourseId();
                 } else {
                     resp.sendRedirect("/home");
+                    return;
                 }
 
                 CourseService courseService = new CourseSerImpl();

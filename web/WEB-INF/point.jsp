@@ -76,6 +76,7 @@
                     <%--<input id="upload_video" accept="video/mp4" type="file" name="video" hidden="">--%>
                 </div>
             </form>
+            <% } %>
             <% if(videos != null) {
                 for (String video : videos){ %>
             <video style="width: 100%; margin-top: 20px;" src="<%= video%>" controls="controls">
