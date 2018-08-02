@@ -27,6 +27,56 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
+
+<div class="modal" tabindex="-1" role="dialog" id="myModalModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">精确搜索</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="card-body" action="search" method="get" id="searchForm">
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">课程名称</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">课程简介</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="introduction" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">老师名称</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="teacher" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="exampleFormControlSelect1" class="col-lg-2 col-form-label">排序</label>
+                        <div class="col-lg-10">
+                            <select class="form-control" id="exampleFormControlSelect1" name="order">
+                                <option value="up">升序</option>
+                                <option value="down">降序</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" form="searchForm">查找</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%-----------------------------------------------%>
 <div class="header_bottom navbar navbar-expand-lg">
     <div class="container">
         <div class="row">
@@ -34,13 +84,16 @@
         <div class="logo col-lg-5">
             <a href="home.jsp"><img src="../res/icon/logo.png" alt=""/></a>
         </div>
-        <div class="col-lg-6 justify-content-end">
+        <div class="col-lg-4 justify-content-end">
             <form action="search" class="form-inline my-2 my-lg-0" style="margin-right: 20px;">
                 <input name="coursename" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
         <div class="col-lg-1">
+            <button class="btn btn-outline-info my-2 my-sm-0" data-toggle="modal" data-target="#myModalModal">Accurate</button>
+        </div>
+        <div class="col-lg-2">
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <%
                     if (user == null){
