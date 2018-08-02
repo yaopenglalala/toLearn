@@ -127,9 +127,33 @@
         </div>
         <div class="col-2"> </div>
         <div class="col-4">
-            <% if (course.getUserId().equals(user.getUserId())){%>
+            <%
+                if(!isStudent&&!course.getUserId().equals(user.getUserId())){
+            %>
+            <form action="addRecord" method="post">
+                <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+                <input type="submit" value="选课"/>
+            </form>
+            <%
+                }else {
+            %>
+            <button type="button" class="btn btn-primary" href="source?courseid=<%= course.getCourseId()%>"> 资源 </button>
+            <button type="button" class="btn btn-primary" href="task?courseid=<%= course.getCourseId()%>"> 作业 </button>
+            <%
+                    if (course.getUserId().equals(user.getUserId())){
+            %>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChapterModal"> 添加章节 </button>
-            <%}%>
+            <%
+                    }else {
+            %>
+            <form action="removeRecord" method="post">
+                <input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>
+                <input type="submit" value="退课"/>
+            </form>
+            <%
+                    }
+                }
+            %>
         </div>
     </div>
 </div>
@@ -139,6 +163,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
+
 <%--<%--%>
     <%--if (!isStudent && !course.getUserId().equals(user.getUserId())){--%>
 <%--%>--%>
@@ -149,10 +174,10 @@
 <%--<%--%>
 <%--} else {--%>
 <%--%>--%>
-<%--<a href="/source?courseid=<%= course.getCourseId()%>">Source</a><br>--%>
-<%--<a href="/task?courseid=<%= course.getCourseId()%>">Tasks</a><br>--%>
+<%--<a href="source?courseid=<%= course.getCourseId()%>">Source</a><br>--%>
+<%--<a href="task?courseid=<%= course.getCourseId()%>">Tasks</a><br>--%>
 <%--<%      if (!course.getUserId().equals(user.getUserId())){ %>--%>
-<%--<form action="/removeRecord" method="post">--%>
+<%--<form action="removeRecord" method="post">--%>
     <%--<input type="text" name="courseid" value="<%= course.getCourseId()%>" hidden/>--%>
     <%--<input type="submit" value="Quit class."/>--%>
 <%--</form>--%>
