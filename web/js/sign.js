@@ -1,4 +1,4 @@
-var mail;
+// var mail;
 function login_name() {
     var name = document.getElementById("user-name").value;
     var tip = document.getElementsByClassName('tips')[0];
@@ -32,15 +32,7 @@ function signinCheck(){
 }
 
 function signupCheck(){
-  // checkname();
-    checkemail();
-    checkpsw0();
-  checkpsw1();
-
-  // checkphone();
-  // checkaddress();
-  return checkname()&&checkpsw0()&&checkpsw1()&&checkemail();
-      // &&checkphone()&&checkaddress()
+  return checkemail()&&checkpsw0()&&checkpsw1()&&checkcode();
 }
 
 function checkname(){
@@ -120,10 +112,6 @@ function checkemail(){
   }
 }
 
-function fillEmail() {
-    document.getElementById("codeMail").value=mail;
-}
-
 
 function incheck(){
   var username = document.getElementById("user-name").value;
@@ -143,6 +131,15 @@ function incheck(){
   }
 }
 
-// function goin(){
-//   window.location.href="./signIn.php";
-// }
+function checkcode() {
+    var code = document.getElementById("register-code").value;
+    var tip = document.getElementsByClassName('tips')[3];
+    if (code === "") {
+        tip.innerHTML = "请输入验证码";
+        return false;
+    }
+    else {
+        tip.innerHTML = "";
+        return true;
+    }
+}
