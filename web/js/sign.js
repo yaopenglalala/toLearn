@@ -145,11 +145,11 @@ function checkcode() {
 }
 
 function sendEmail() {
-    var email = document.getElementById("register-email").value;
+    var email = $("#codeMail").val();
     $.ajax({
-            url:"mailConfirm",
+        url:"/mailConfirm",
         type:"post",
-        data:{'username':email}
+        data:{username:email}
     });
     return false;
 }
